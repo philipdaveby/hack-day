@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 
 const ExercisePage = props => {
 
+  const listItems = useRef();
   const [exercises, setExercises] = useState('');
   const [filteredExercises, setFilteredExercises] = useState('');
   // const [workouts, setWorkouts] = useState([]);
@@ -12,6 +13,29 @@ const ExercisePage = props => {
       .then(res => setFilteredExercises(res))
       .catch(err => console.log(err));
   }, []);
+
+  // useEffect(() => {
+  //   // console.log(listItems.current.children);
+  //   const liArray = Array.from(listItems.current.children);
+
+  //   if (!exercises) {
+  //     return;
+  //   }
+
+  //   exercises.map(exercise => {
+  //     if (exercise.clicked) {
+  //       const clickedLi = liArray.filter(li => li.id === exercise.id.toString());
+  //       console.log(clickedLi);
+  //       clickedLi.className = 'clicked'
+  //       return;
+  //     } 
+  //     Array.from(listItems.current.children).map(li => {
+  //       li.className = ''
+  //     });
+  //   });
+
+  //   // exercise.clicked ? e.currentTarget.className = 'clicked' : e.currentTarget.className = '';
+  // },);
 
   // useEffect(() => {
   //   console.log(workouts);
@@ -73,6 +97,12 @@ const ExercisePage = props => {
     toggleWorkout(e);
   };
 
+  const saveWorkout = () => {
+    // Set title of workout
+    // Send user to workout 
+    // Add new workout
+  };
+
   return (
     <div className="exercise__page">
       <h2>Create your workout</h2>
@@ -91,7 +121,8 @@ const ExercisePage = props => {
           return <li key={i+1000}>{e.title} {e.clicked} {e.id} </li>
         }) : ''}
       </ul> */}
-          <ul>{
+      <button onClick={saveWorkout}>Save workout</button>
+          <ul ref={listItems}>{
           filteredExercises ? filteredExercises.map(exercise => {
             return <li key={exercise.id} onClick={e => toggleChooseExercise(e)}>
               <h3>{exercise.title}</h3>

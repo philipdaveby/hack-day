@@ -10,4 +10,10 @@ li {
   background-color: lightgrey;
 }
 
+.done {
+  background-color: lightgrey;
+  font-style: italic;
+  text-decoration: line-through;
+}
+
 /*# sourceMappingURL=index.css.map */
