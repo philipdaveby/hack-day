@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import Workouts from './Workouts';
 
-const ExercisePage = () => {
+const ExercisePage = props => {
 
   const [exercises, setExercises] = useState('');
   const [filteredExercises, setFilteredExercises] = useState('');
-  const [workouts, setWorkouts] = useState([]);
+  // const [workouts, setWorkouts] = useState([]);
   
   useEffect(() => {
     callApi()
@@ -36,10 +35,10 @@ const ExercisePage = () => {
   // };
 
   const removeWorkout = e => {
-    workouts.forEach((obj, i) => {
+    props.workouts.forEach((obj, i) => {
       if (obj.id.toString() === e.currentTarget.id) {
-        workouts.splice(i, 1);
-        setWorkouts(workouts);
+        props.workouts.splice(i, 1);
+        props.setWorkouts(props.workouts);
       }
     });
   };
@@ -49,13 +48,13 @@ const ExercisePage = () => {
       if (e.currentTarget.id !== exercise.id.toString()) {
         return;
       }
-      const updatedWorkout = [...workouts, exercise]
-      setWorkouts(updatedWorkout);
+      const updatedWorkout = [...props.workouts, exercise]
+      props.setWorkouts(updatedWorkout);
     });
   };
 
   const toggleWorkout = e => {
-    const objExists = workouts.filter(exercise => exercise.id.toString() === e.currentTarget.id);
+    const objExists = props.workouts.filter(exercise => exercise.id.toString() === e.currentTarget.id);
     if (objExists[0]) {
       removeWorkout(e);
       return;

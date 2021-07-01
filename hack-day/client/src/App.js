@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ExercisePage from './components/ExercisePage';
 import Nav from './components/Nav';
 import Workouts from './components/Workouts';
@@ -10,6 +10,8 @@ import {
 import './App.css';
 
 const App = () => {
+
+  const [workouts, setWorkouts] = useState([]);
   
   return (
       <div className="App">
@@ -17,10 +19,10 @@ const App = () => {
         <h1>Workout app</h1>
           <Switch>
           <Route path='/workout'>
-            <Workouts />
+            <Workouts workouts={workouts} setWorkouts={setWorkouts} />
           </Route>
           <Route path='/'>
-            <ExercisePage />
+            <ExercisePage workouts={workouts} setWorkouts={setWorkouts} />
           </Route>
         </Switch>
       </div>
