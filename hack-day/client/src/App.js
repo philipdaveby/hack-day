@@ -15,16 +15,16 @@ const App = props => {
   
   return (
       <div className="App">
-        <Nav />
-        <h1>Workout app</h1>
+        <h1 className="main__header">Workout app</h1>
           <Switch>
-          <Route path='/workouts'>
-            <Workouts workout={workout} setWorkout={setWorkout} workouts={workouts} />
-          </Route>
-          <Route path='/'>
-            <ExercisePage workout={workout} setWorkout={setWorkout} workouts={workouts} setWorkouts={setWorkouts} />
-          </Route>
-        </Switch>
+            <Route path='/workouts'>
+              <Workouts workout={workout} setWorkout={setWorkout} workouts={workouts} />
+            </Route>
+            <Route path='/'>
+              <ExercisePage workout={workout} setWorkout={setWorkout} workouts={workouts} setWorkouts={setWorkouts} />
+            </Route>
+          </Switch>
+        <Nav />
       </div>
   );
 }

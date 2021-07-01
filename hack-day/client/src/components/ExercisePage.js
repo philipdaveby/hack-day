@@ -128,41 +128,9 @@ const ExercisePage = props => {
   };
 
   return (
-    <div className="exercise__page">
-      <h2>Create your workout</h2>
-      <form>
-        <p>
-          <strong>Search</strong>
-        </p>
-        <input
-          type="text"
-          onChange={e => filterExercises(e.target.value)}
-          />
-        <button type="submit">Submit</button>
-      </form>
-      {/* <ul>
-        {workouts ? workouts[0].exercises.map((e, i) => {
-          return <li key={i+1000}>{e.title} {e.clicked} {e.id} </li>
-        }) : ''}
-      </ul> */}
-      {/* <button onClick={saveWorkout}>Save workout</button> */}
-      <form onSubmit={e => saveWorkout(e)}>
-        <input
-          name="title"
-          type="text"
-          placeholder="Enter a title"
-          />
-        {/* <Link to="/workouts"> */}
-          <button type="submit" >Save workout</button>
-        {/* </Link> */}
-      </form>
-          <ul>{
-          // filteredExercises ? filteredExercises.map(exercise => {
-          //   return <li key={exercise.id} onClick={e => toggleChooseExercise(e)}>
-          //     <h3>{exercise.title}</h3>
-          //     {exercise.category}
-          //     </li>
-          // }) : 
+    <div className="exercise-page">
+      <h2 className="exercise-page__header">Create your workout</h2>
+          <ul className="exercise-page__list">{
           exercises ? exercises.map(exercise => {
             return !exercise.isFilteredOut ? (<li key={exercise.id} id={exercise.id} onClick={e => toggleChooseExercise(e)}>
               <h3>{exercise.title}</h3>
@@ -170,6 +138,22 @@ const ExercisePage = props => {
               </li>) : ''
           }) : ''
           }</ul>
+      <form className="exercise-page__save" onSubmit={e => saveWorkout(e)}>
+        <input
+          name="title"
+          type="text"
+          placeholder="Enter a title"
+          />
+          <button type="submit">Save</button>
+      </form>
+      <form className="exercise-page__search">
+        <input
+          type="text"
+          onChange={e => filterExercises(e.target.value)}
+          placeholder="Search.."
+          />
+        <button type="submit">Search</button>
+      </form>
     </div>
   );  
 

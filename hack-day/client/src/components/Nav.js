@@ -3,16 +3,16 @@ import { Link } from 'react-router-dom';
 
 const Nav = () => {
   return (
-    <nav>
+    <nav className="nav">
       <Link to="/">
-        <button>
+        <div className="nav__button">
           Home
-        </button>
+        </div>
       </Link>
       <Link to="/workouts">
-        <button>
+        <div className="nav__button">
           Workout
-        </button>
+        </div>
       </Link>
     </nav>
   );

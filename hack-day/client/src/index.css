@@ -1,9 +1,67 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  border: none;
+  background-color: lightsalmon;
+  width: 6rem;
+  border-radius: 1rem;
+  padding: 1rem 1.5rem;
+}
+
+input {
+  width: 50%;
+  height: 2rem;
+  margin: 0 2rem 0 1rem;
+}
+
+.App {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
 li {
   list-style-type: none;
-  border: 2px solid black;
+  border: none;
+  background-color: lightsalmon;
   border-radius: 1rem;
-  margin: 2rem;
-  padding: 0 0 1rem;
+  margin: 0.5rem 2rem;
+  padding: 0.8rem 0 1rem;
+}
+
+.main__header {
+  margin: 3rem 0 2rem 0;
+}
+
+.exercise-page {
+  overflow: hidden;
+}
+
+.exercise-page__header {
+  margin-bottom: 2rem;
+}
+
+.exercise-page__list {
+  max-height: 46vh;
+  padding-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+}
+
+.exercise-page__save {
+  margin: 1rem 0;
+}
+
+.exercise-page__search {
+  margin: 1rem 0 2rem 0;
 }
 
 .clicked {
@@ -14,6 +72,14 @@ li {
   background-color: lightgrey;
   font-style: italic;
   text-decoration: line-through;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-evenly;
+  background-color: lightgrey;
+  padding: 1.5rem 0;
+  margin-top: auto;
 }
 
 /*# sourceMappingURL=index.css.map */
