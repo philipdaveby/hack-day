@@ -4,7 +4,7 @@ const ExercisePage = () => {
 
   const [exercises, setExercises] = useState('');
   const [filteredExercises, setFilteredExercises] = useState('');
-  const [workouts, setWorkouts] = useState([{title: 'Work in progress', exercises: []}]);
+  const [workouts, setWorkouts] = useState([]);
   
   useEffect(() => {
     callApi()
@@ -37,61 +37,104 @@ const ExercisePage = () => {
     setFilteredExercises(filteredTitle);
   };
 
-  const addExerciseToWorkout = (e) => {
-    exercises.map(exercise => {
+  const removeWorkout = e => {
+    workouts.forEach((obj, i) => {
+      if (obj.id.toString() === e.currentTarget.id) {
+        workouts.splice(i, 1);
+        setWorkouts(workouts);
+        // console.log('Should be removed now');
+        // Ta bort övningen
+        // Isf vill jag inte gå vidare och push till array
+      }
+    });
+  };
+
+  const addWorkout = e => {
+    exercises.forEach(exercise => {
       if (e.currentTarget.id !== exercise.id.toString()) {
         return;
       }
-      const i = workouts.length - 1;
-      const updatedWorkout = workouts[i];
+      // 
+      const updatedWorkout = [...workouts, exercise]
+      setWorkouts(updatedWorkout);
+    });
+  };
 
-      if (workouts[i].exercises.length === 0) {
-        console.log('Inside check for empty array')
-        updatedWorkout.exercises.push(exercise);
-        setWorkouts([...workouts, updatedWorkout]);
-        return;
-      } 
+  const toggleWorkout = e => {
+    // kolla om övningen finns
 
-      workouts[i].exercises.forEach(exerciseObj => {
-        console.log(exerciseObj.id, ' - ', exercise.id)
-        if (exerciseObj.id !== exercise.id) {
-          console.log('inside inner if')
-          updatedWorkout.exercises.push(exercise);
-          setWorkouts([...workouts, updatedWorkout]);
-        } 
-        // else {
-        //   const index = workouts[i].exercises.findIndex(e => e.id === exerciseObj.id);
-        //   updatedWorkout.exercises.splice(index, 1);
-        //   setWorkouts([...workouts, updatedWorkout]);
-        // }
-      });
+    const objExists = workouts.filter(exercise => exercise.id.toString() === e.currentTarget.id);
+    // console.log(objExists[0]);
+    if (objExists[0]) {
+      removeWorkout(e);
+      return;
+    }
+
+    // if (/*  */)
+
+    addWorkout(e);
+    
+  // Lägger till övningen
+  
+
+  //   const i = workouts.length - 1;
+  //   const updatedWorkout = workouts[i];
+
+  //   if (workouts[i].exercises.length === 0) {
+  //     console.log('Inside check for empty array')
+  //     updatedWorkout.exercises.push(exercise);
+  //     setWorkouts([...workouts, updatedWorkout]);
+  //     return;
+  //   } 
+
+  //   workouts[i].exercises.forEach(exerciseObj => {
+
+  //     // console.log('inside for each')
+  //     // console.log(exerciseObj.id, ' - ', exercise.id)
+  //     if (exerciseObj.id !== exercise.id) {
+  //       // console.log('inside inner if')
+  //       updatedWorkout.exercises.push(exercise);
+  //       setWorkouts([...workouts, updatedWorkout]);
+  //       return;
+  //     } 
       
+  //     console.log('Last')
+  //     const index = workouts[i].exercises.findIndex(e => e.id === exerciseObj.id);
+  //     // console.log(index)
+
+  //     updatedWorkout.exercises.splice(index, 1);
+  //     // console.log(updatedWorkout.exercises.splice(index, 1), ' console');
+  //     // console.log(updatedWorkout, ' console updated')
+  //     setWorkouts([...workouts, updatedWorkout]);
+  //     else {
+  //     }
+  //   });
+    
 
 
 
 
 
 
-        // workouts[i].exercises.map(workoutExercise => {
-        //   if (workoutExercise.id === exercise.id) {
-        //     // hitta index sen ta bort
-        //     const index = workouts.findIndex(e => e.id === workoutExercise.id);
+  //     workouts[i].exercises.map(workoutExercise => {
+  //       if (workoutExercise.id === exercise.id) {
+  //         // hitta index sen ta bort
+  //         const index = workouts.findIndex(e => e.id === workoutExercise.id);
 
-        //     console.log('Inside dubble if')
-        //     return;
-        //     // console.log(index)
-        //     // workouts[i].exercises.splice(index, 1);
-        //   } else {
-        //     // console.log(workouts[i].exercises)
-        //     updatedWorkout.exercises.push(exercise);
-        //   }
-        //   setWorkouts([...workouts, updatedWorkout]);
+  //         console.log('Inside dubble if')
+  //         return;
+  //         // console.log(index)
+  //         // workouts[i].exercises.splice(index, 1);
+  //       } else {
+  //         // console.log(workouts[i].exercises)
+  //         updatedWorkout.exercises.push(exercise);
+  //       }
+  //       setWorkouts([...workouts, updatedWorkout]);
 
-        // });
-        // Kolla om workout finns
-        // console.log(workouts[i].exercises)
-      }
-    );
+  //     });
+  //     Kolla om workout finns
+  //     console.log(workouts[i].exercises)
+  
   };
 
   const toggleChooseExercise = e => {
@@ -103,7 +146,7 @@ const ExercisePage = () => {
       return exercise;
     }));
     // lägg till exercise i workout
-    addExerciseToWorkout(e);
+    toggleWorkout(e);
   };
 
   return (
@@ -120,6 +163,11 @@ const ExercisePage = () => {
           />
         <button type="submit">Submit</button>
       </form>
+      {/* <ul>
+        {workouts ? workouts[0].exercises.map((e, i) => {
+          return <li key={i+1000}>{e.title} {e.clicked} {e.id} </li>
+        }) : ''}
+      </ul> */}
           <ul>{
           filteredExercises ? filteredExercises.map(exercise => {
             return <li key={exercise.id} onClick={e => toggleChooseExercise(e)}>
