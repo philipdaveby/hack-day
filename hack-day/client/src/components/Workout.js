@@ -1,12 +1,23 @@
 import React from 'react';
 
 const Workout = props => {
+
+  const toggleDone = e => {
+    if (e.currentTarget.className === 'done') {
+      e.currentTarget.className = '';
+      return;
+    } 
+      e.currentTarget.className = 'done';
+  }
+
   return (
     <div>
-      <h2>Here goes the name of the workout</h2>
       <ul>
-        {props.workouts[0] ? props.workouts.map(obj => {
-          return <li key={obj.id} onClick={e => props.toggleDone(e)}>
+        {props.workout[0] ? props.workout.map(obj => {
+          return <li key={obj.id} onClick={e => {
+            e.stopPropagation();
+            toggleDone(e);
+          }}>
             <h2>{obj.title}</h2>
             <p>{obj.category}</p>
             </li>}) : ''

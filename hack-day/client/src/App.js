@@ -6,11 +6,11 @@ import {
   Switch,
   Route
 } from "react-router-dom";
-
 import './App.css';
 
-const App = () => {
+const App = props => {
 
+  const [workout, setWorkout] = useState([]);
   const [workouts, setWorkouts] = useState([]);
   
   return (
@@ -18,11 +18,11 @@ const App = () => {
         <Nav />
         <h1>Workout app</h1>
           <Switch>
-          <Route path='/workout'>
-            <Workouts workouts={workouts} setWorkouts={setWorkouts} />
+          <Route path='/workouts'>
+            <Workouts workout={workout} setWorkout={setWorkout} workouts={workouts} />
           </Route>
           <Route path='/'>
-            <ExercisePage workouts={workouts} setWorkouts={setWorkouts} />
+            <ExercisePage workout={workout} setWorkout={setWorkout} workouts={workouts} setWorkouts={setWorkouts} />
           </Route>
         </Switch>
       </div>

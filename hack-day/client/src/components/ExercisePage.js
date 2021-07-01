@@ -1,11 +1,12 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 const ExercisePage = props => {
 
-  const listItems = useRef();
+  // const listItems = useRef();
   const [exercises, setExercises] = useState('');
   const [filteredExercises, setFilteredExercises] = useState('');
-  // const [workouts, setWorkouts] = useState([]);
+  const history = useHistory();
   
   useEffect(() => {
     callApi()
@@ -38,7 +39,9 @@ const ExercisePage = props => {
   // },);
 
   // useEffect(() => {
-  //   console.log(workouts);
+  //   if (exercises) {
+  //     exercises.forEach(e => console.log(e.isFilteredOut))
+  //   }
   // });
   
   const callApi = async () => {
@@ -51,18 +54,30 @@ const ExercisePage = props => {
   };
 
   // const filterExercises = query => {
-  //   if (filteredExercises === []) {
-  //     setFilteredExercises(exercises);
-  //   }
+  //   // if (filteredExercises === []) {
+  //   //   setFilteredExercises(exercises);
+  //   // }
   //   const filteredTitle = exercises.filter(exercise => exercise.title.match(query));
   //   setFilteredExercises(filteredTitle);
   // };
 
+  const filterExercises = query => {
+    const filteredTitle = exercises.filter(exercise => exercise.title.match(query));
+    setExercises(exercises.map(exercise => {
+      if (exercise.title.match(query)) {
+        exercise.isFilteredOut = false;
+        return exercise;
+      }
+        exercise.isFilteredOut = true;
+        return exercise;
+   }))
+  };
+
   const removeWorkout = e => {
-    props.workouts.forEach((obj, i) => {
+    props.workout.forEach((obj, i) => {
       if (obj.id.toString() === e.currentTarget.id) {
-        props.workouts.splice(i, 1);
-        props.setWorkouts(props.workouts);
+        props.workout.splice(i, 1);
+        props.setWorkout(props.workout);
       }
     });
   };
@@ -72,13 +87,13 @@ const ExercisePage = props => {
       if (e.currentTarget.id !== exercise.id.toString()) {
         return;
       }
-      const updatedWorkout = [...props.workouts, exercise]
-      props.setWorkouts(updatedWorkout);
+      const updatedWorkout = [...props.workout, exercise]
+      props.setWorkout(updatedWorkout);
     });
   };
 
   const toggleWorkout = e => {
-    const objExists = props.workouts.filter(exercise => exercise.id.toString() === e.currentTarget.id);
+    const objExists = props.workout.filter(exercise => exercise.id.toString() === e.currentTarget.id);
     if (objExists[0]) {
       removeWorkout(e);
       return;
@@ -97,16 +112,25 @@ const ExercisePage = props => {
     toggleWorkout(e);
   };
 
-  const saveWorkout = () => {
-    // Set title of workout
-    // Send user to workout 
-    // Add new workout
+  const saveWorkout = e => {
+    e.preventDefault();
+    const length = props.workouts.length;
+    const updatedObject = {
+      title: e.target.title.value,
+      workout: props.workout,
+      id: length
+    }
+    props.setWorkouts([...props.workouts, updatedObject]);
+    e.target.title.value = '';
+
+    props.setWorkout([]);
+    history.push('/workouts');
   };
 
   return (
     <div className="exercise__page">
       <h2>Create your workout</h2>
-      {/* <form>
+      <form>
         <p>
           <strong>Search</strong>
         </p>
@@ -115,24 +139,35 @@ const ExercisePage = props => {
           onChange={e => filterExercises(e.target.value)}
           />
         <button type="submit">Submit</button>
-      </form> */}
+      </form>
       {/* <ul>
         {workouts ? workouts[0].exercises.map((e, i) => {
           return <li key={i+1000}>{e.title} {e.clicked} {e.id} </li>
         }) : ''}
       </ul> */}
-      <button onClick={saveWorkout}>Save workout</button>
-          <ul ref={listItems}>{
-          filteredExercises ? filteredExercises.map(exercise => {
-            return <li key={exercise.id} onClick={e => toggleChooseExercise(e)}>
+      {/* <button onClick={saveWorkout}>Save workout</button> */}
+      <form onSubmit={e => saveWorkout(e)}>
+        <input
+          name="title"
+          type="text"
+          placeholder="Enter a title"
+          />
+        {/* <Link to="/workouts"> */}
+          <button type="submit" >Save workout</button>
+        {/* </Link> */}
+      </form>
+          <ul>{
+          // filteredExercises ? filteredExercises.map(exercise => {
+          //   return <li key={exercise.id} onClick={e => toggleChooseExercise(e)}>
+          //     <h3>{exercise.title}</h3>
+          //     {exercise.category}
+          //     </li>
+          // }) : 
+          exercises ? exercises.map(exercise => {
+            return !exercise.isFilteredOut ? (<li key={exercise.id} id={exercise.id} onClick={e => toggleChooseExercise(e)}>
               <h3>{exercise.title}</h3>
               {exercise.category}
-              </li>
-          }) : exercises ? exercises.map(exercise => {
-            return <li key={exercise.id} id={exercise.id} onClick={e => toggleChooseExercise(e)}>
-              <h3>{exercise.title}</h3>
-              {exercise.category}
-              </li>
+              </li>) : ''
           }) : ''
           }</ul>
     </div>
