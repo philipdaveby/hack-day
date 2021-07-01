@@ -2,106 +2,127 @@
 	{
 		"title": "push ups",
 		"category": "chest, arms",
-		"id": 0
+		"id": 0,
+		"clicked": false
 	},
 	{
 		"title": "pull ups",
 		"category": "back, arms",
-		"id": 1
+		"id": 1,
+		"clicked": false
 	},
 	{
 		"title": "dips",
 		"category": "chest, arms",
-		"id": 2
+		"id": 2,
+		"clicked": false
 	},
 	{
 		"title": "deadlift",
 		"category": "legs, back",
-		"id": 3
+		"id": 3,
+		"clicked": false
 	},
 	{
 		"title": "bench press",
 		"category": "chest",
-		"id": 4
+		"id": 4,
+		"clicked": false
 	},
 	{
 		"title": "squats",
 		"category": "legs",
-		"id": 5
+		"id": 5,
+		"clicked": false
 	},
 	{
 		"title": "air squats",
 		"category": "legs",
-		"id": 6
+		"id": 6,
+		"clicked": false
 	},
 	{
 		"title": "crunches",
 		"category": "stomach",
-		"id": 7
+		"id": 7,
+		"clicked": false
 	},
 	{
 		"title": "arnie flies",
 		"category": "chest",
-		"id": 8
+		"id": 8,
+		"clicked": false
 	},
 	{
 		"title": "bulgarian split squat",
 		"category": "legs",
-		"id": 9
+		"id": 9,
+		"clicked": false
 	},
 	{
 		"title": "bench incline",
 		"category": "chest",
-		"id": 10
+		"id": 10,
+		"clicked": false
 	},
 	{
 		"title": "biceps curl",
 		"category": "arms",
-		"id": 11
+		"id": 11,
+		"clicked": false
 	},
 	{
 		"title": "triceps",
 		"category": "arms",
-		"id": 12
+		"id": 12,
+		"clicked": false
 	},
 	{
 		"title": "wrist strech",
 		"category": "warm up",
-		"id": 13
+		"id": 13,
+		"clicked": false
 	},
 	{
 		"title": "foam roller",
 		"category": "warm up",
-		"id": 14
+		"id": 14,
+		"clicked": false
 	},
 	{
 		"title": "tow to bar",
 		"category": "stomach",
-		"id": 15
+		"id": 15,
+		"clicked": false
 	},
 	{
 		"title": "shoulder press",
 		"category": "shoulders",
-		"id": 16
+		"id": 16,
+		"clicked": false
 	},
 	{
 		"title": "diamond push-up",
 		"category": "chest, arms",
-		"id": 17
+		"id": 17,
+		"clicked": false
 	},
 	{
 		"title": "push-ups on mini band",
 		"category": "chest, arms",
-		"id": 18
+		"id": 18,
+		"clicked": false
 	},
 	{
 		"title": "lunges",
 		"category": "legs",
-		"id": 19
+		"id": 19,
+		"clicked": false
 	},
 	{
 		"title": "bent-over row",
 		"category": "back, arms",
-		"id": 20
+		"id": 20,
+		"clicked": false
 	}
 ]

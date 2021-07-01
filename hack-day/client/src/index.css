@@ -1,3 +1,13 @@
+li {
+  list-style-type: none;
+  border: 2px solid black;
+  border-radius: 1rem;
+  margin: 2rem;
+  padding: 0 0 1rem;
+}
 
+.clicked {
+  background-color: red;
+}
 
 /*# sourceMappingURL=index.css.map */
