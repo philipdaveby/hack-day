@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Workouts from './Workouts';
 
 const ExercisePage = () => {
 
@@ -13,9 +14,9 @@ const ExercisePage = () => {
       .catch(err => console.log(err));
   }, []);
 
-  useEffect(() => {
-    console.log(workouts);
-  });
+  // useEffect(() => {
+  //   console.log(workouts);
+  // });
   
   const callApi = async () => {
     const response = await fetch('/api/exercises');
@@ -26,13 +27,13 @@ const ExercisePage = () => {
     return body;
   };
 
-  const filterExercises = query => {
-    if (filteredExercises === []) {
-      setFilteredExercises(exercises);
-    }
-    const filteredTitle = exercises.filter(exercise => exercise.title.match(query));
-    setFilteredExercises(filteredTitle);
-  };
+  // const filterExercises = query => {
+  //   if (filteredExercises === []) {
+  //     setFilteredExercises(exercises);
+  //   }
+  //   const filteredTitle = exercises.filter(exercise => exercise.title.match(query));
+  //   setFilteredExercises(filteredTitle);
+  // };
 
   const removeWorkout = e => {
     workouts.forEach((obj, i) => {
@@ -75,9 +76,8 @@ const ExercisePage = () => {
 
   return (
     <div className="exercise__page">
-      <h1>Workout app</h1>
       <h2>Create your workout</h2>
-      <form>
+      {/* <form>
         <p>
           <strong>Search</strong>
         </p>
@@ -86,7 +86,7 @@ const ExercisePage = () => {
           onChange={e => filterExercises(e.target.value)}
           />
         <button type="submit">Submit</button>
-      </form>
+      </form> */}
       {/* <ul>
         {workouts ? workouts[0].exercises.map((e, i) => {
           return <li key={i+1000}>{e.title} {e.clicked} {e.id} </li>
