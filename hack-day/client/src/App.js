@@ -8,7 +8,7 @@ import {
 } from "react-router-dom";
 import './App.css';
 
-const App = props => {
+const App = () => {
 
   const [workout, setWorkout] = useState([]);
   const [workouts, setWorkouts] = useState([]);

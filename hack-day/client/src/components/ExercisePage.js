@@ -3,46 +3,14 @@ import { useHistory } from 'react-router-dom';
 
 const ExercisePage = props => {
 
-  // const listItems = useRef();
   const [exercises, setExercises] = useState('');
-  const [filteredExercises, setFilteredExercises] = useState('');
   const history = useHistory();
   
   useEffect(() => {
     callApi()
       .then(res => setExercises(res))
-      .then(res => setFilteredExercises(res))
       .catch(err => console.log(err));
   }, []);
-
-  // useEffect(() => {
-  //   // console.log(listItems.current.children);
-  //   const liArray = Array.from(listItems.current.children);
-
-  //   if (!exercises) {
-  //     return;
-  //   }
-
-  //   exercises.map(exercise => {
-  //     if (exercise.clicked) {
-  //       const clickedLi = liArray.filter(li => li.id === exercise.id.toString());
-  //       console.log(clickedLi);
-  //       clickedLi.className = 'clicked'
-  //       return;
-  //     } 
-  //     Array.from(listItems.current.children).map(li => {
-  //       li.className = ''
-  //     });
-  //   });
-
-  //   // exercise.clicked ? e.currentTarget.className = 'clicked' : e.currentTarget.className = '';
-  // },);
-
-  // useEffect(() => {
-  //   if (exercises) {
-  //     exercises.forEach(e => console.log(e.isFilteredOut))
-  //   }
-  // });
   
   const callApi = async () => {
     const response = await fetch('/api/exercises');
@@ -53,16 +21,7 @@ const ExercisePage = props => {
     return body;
   };
 
-  // const filterExercises = query => {
-  //   // if (filteredExercises === []) {
-  //   //   setFilteredExercises(exercises);
-  //   // }
-  //   const filteredTitle = exercises.filter(exercise => exercise.title.match(query));
-  //   setFilteredExercises(filteredTitle);
-  // };
-
   const filterExercises = query => {
-    const filteredTitle = exercises.filter(exercise => exercise.title.match(query));
     setExercises(exercises.map(exercise => {
       if (exercise.title.match(query)) {
         exercise.isFilteredOut = false;

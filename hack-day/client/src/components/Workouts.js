@@ -1,7 +1,6 @@
 import React from 'react';
 import Workout from './Workout';
-import { useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useState } from 'react';
 
 const Workouts = props => {
 
@@ -12,8 +11,8 @@ const Workouts = props => {
       <h2>Your workouts</h2>
       <ul>{props.workouts.map((workout, index) => {
         return <li key={workout.id} onClick={e => setActiveWorkout( (activeWorkout === workout.id) ? null : workout.id)} className="workouts__li">
-           <h2> <a>{workout.title}</a></h2>
-           {(activeWorkout === workout.id) ? <Workout workout={workout.workout} /> : ''}
+           <h2>{workout.title}</h2>
+           {(activeWorkout === workout.id) ? <Workout workout={workout.workout} setWorkout={props.setWorkout}/> : ''}
           </li>
       })}</ul>
     </div>
