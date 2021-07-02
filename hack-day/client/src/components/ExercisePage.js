@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
 const ExercisePage = props => {
 
-  const [exercises, setExercises] = useState('');
+  const [exercises, setExercises] = props.useStickyState(null, 'exercises');
   const history = useHistory();
   
   useEffect(() => {
@@ -77,10 +77,16 @@ const ExercisePage = props => {
     const updatedObject = {
       title: e.target.title.value,
       workout: props.workout,
-      id: length
+      id: length,
+      done: false
     }
     props.setWorkouts([...props.workouts, updatedObject]);
     e.target.title.value = '';
+
+    // setExercises(exercises.map(exercise => {
+    //   exercise.clicked = false;
+    //   return exercise;
+    // }));
 
     props.setWorkout([]);
     history.push('/workouts');

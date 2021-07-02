@@ -4,14 +4,25 @@ const Workout = props => {
 
   const toggleDone = e => {
     e.stopPropagation();
+
     
-    props.setWorkout(props.workout.map(exercise => {
-      if (e.currentTarget.id === exercise.id.toString()) {
-        exercise.done ? exercise.done = false : exercise.done = true;
-        return exercise;
-      } 
-      return exercise;
+    props.setWorkouts(props.workouts.map(workout => {
+      if (workout.id.toString() === e.currentTarget.parentNode.parentNode.parentNode.id) {
+        workout.workout.map(exercise => {
+          if (e.currentTarget.id === exercise.id.toString()) {
+            exercise.done ? exercise.done = false : exercise.done = true;
+            return exercise;
+          } 
+          return exercise;
+        });
+      }
+      return workout;
     }));
+  };
+  const deleteWorkout = e => {
+    const index = props.workouts.findIndex(workout => workout.id.toString() === e.currentTarget.parentNode.parentNode.parentNode.id);
+    props.workouts.splice(index, 1);
+    window.localStorage.setItem('workouts', JSON.stringify(props.workouts))
   };
 
   return (
@@ -23,6 +34,7 @@ const Workout = props => {
             <p>{obj.category}</p>
             </li>}) : ''
         }
+        <button id={props.workout.id} className="workouts__button-delete" onClick={e => deleteWorkout(e)}>DELETE</button>
       </ul>
     </div>
   );
