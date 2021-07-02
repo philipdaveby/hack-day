@@ -1,6 +1,10 @@
 * {
   padding: 0;
   margin: 0;
+  color: #4D2404;
+  font-family: 'Helvetica';
+  font-weight: 300;
+  text-align: center;
 }
 
 a {
@@ -9,15 +13,13 @@ a {
 
 button {
   border: none;
-  background-color: lightsalmon;
+  background-color: #FFEDDA;
+  font-weight: 400;
   width: 6rem;
   border-radius: 1rem;
   padding: 1rem 1.5rem;
+  box-shadow: 1px 1px 2px lightslategray;
 }
-
-// form {
-//   width: 80vw;
-// }
 
 input {
   width: 50%;
@@ -31,13 +33,13 @@ input {
   flex-direction: column;
 }
 
-li {
+@mixin li {
   list-style-type: none;
   border: none;
-  background-color: lightsalmon;
+  background-color: #FFEDDA;
   border-radius: 1rem;
-  margin: 0.5rem 2rem;
   padding: 0.8rem 0 1rem;
+  box-shadow: 1px 1px 2px lightslategray;
 }
 
 .main__header {
@@ -61,6 +63,11 @@ li {
   overflow-y: scroll;
 }
 
+.exercise-page__li {
+  @include li;
+  margin: 0.5rem 2rem;
+}
+
 .exercise-page__save {
   margin: 1rem 0;
 }
@@ -68,20 +75,47 @@ li {
 .exercise-page__search {
   margin: 1rem 0 2rem 0;
 }
+
+.workouts__li {
+  @include li;
+  margin: 1rem 2rem;
+}
+
+.workouts__list {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+}
+
+.workouts__exercise {
+  @include li;
+  background-color: #F9C48B;
+  margin: 0.5rem 2rem;
+  order: 1
+}
+
 .clicked {
-  background-color: lightgrey;
+  @include li;
+  background-color: lightsalmon;
+  box-shadow: 3px 3px 2px lightslategray;
 }
 
 .done {
   background-color: lightgrey;
   font-style: italic;
   text-decoration: line-through;
+  order: 2
 }
 
 .nav {
   display: flex;
   justify-content: space-evenly;
-  background-color: lightgrey;
+  background-color: #F5AC72;
   padding: 1.5rem 0;
   margin-top: auto;
+}
+
+.nav__button {
+  font-weight: 400;
 }

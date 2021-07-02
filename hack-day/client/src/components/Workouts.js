@@ -9,9 +9,9 @@ const Workouts = props => {
 
   return (
     <div>
-      <h2>Your workout</h2>
+      <h2>Your workouts</h2>
       <ul>{props.workouts.map((workout, index) => {
-        return <li key={workout.id} onClick={e => setActiveWorkout( (activeWorkout === workout.id) ? null : workout.id)}>
+        return <li key={workout.id} onClick={e => setActiveWorkout( (activeWorkout === workout.id) ? null : workout.id)} className="workouts__li">
            <h2> <a>{workout.title}</a></h2>
            {(activeWorkout === workout.id) ? <Workout workout={workout.workout} /> : ''}
           </li>

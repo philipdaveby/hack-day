@@ -105,7 +105,7 @@ const ExercisePage = props => {
     setExercises(exercises.map(exercise => {
       if (e.currentTarget.id === exercise.id.toString()) {
         exercise.clicked ? exercise.clicked = false : exercise.clicked = true;
-        exercise.clicked ? e.currentTarget.className = 'clicked' : e.currentTarget.className = '';
+        exercise.clicked ? e.currentTarget.className = 'exercise-page__li clicked' : e.currentTarget.className = 'exercise-page__li';
       }
       return exercise;
     }));
@@ -132,7 +132,7 @@ const ExercisePage = props => {
       <h2 className="exercise-page__header">Create your workout</h2>
           <ul className="exercise-page__list">{
           exercises ? exercises.map(exercise => {
-            return !exercise.isFilteredOut ? (<li key={exercise.id} id={exercise.id} onClick={e => toggleChooseExercise(e)}>
+            return !exercise.isFilteredOut ? (<li key={exercise.id} id={exercise.id} onClick={e => toggleChooseExercise(e)} className="exercise-page__li">
               <h3>{exercise.title}</h3>
               {exercise.category}
               </li>) : ''
@@ -144,7 +144,7 @@ const ExercisePage = props => {
           type="text"
           placeholder="Enter a title"
           />
-          <button type="submit">Save</button>
+          <button type="submit">SAVE</button>
       </form>
       <form className="exercise-page__search">
         <input
@@ -152,7 +152,7 @@ const ExercisePage = props => {
           onChange={e => filterExercises(e.target.value)}
           placeholder="Search.."
           />
-        <button type="submit">Search</button>
+        <button type="submit">SEARCH</button>
       </form>
     </div>
   );  
