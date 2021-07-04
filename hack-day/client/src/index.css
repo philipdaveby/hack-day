@@ -31,6 +31,7 @@ input {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  margin-bottom: -100px;
 }
 
 .main__header {
@@ -46,10 +47,10 @@ input {
 }
 
 .exercise-page__list {
-  max-height: 40vh;
   padding-top: 2rem;
   display: flex;
   flex-direction: column;
+  align-items: center;
   overflow-y: scroll;
 }
 
@@ -60,7 +61,17 @@ input {
   border-radius: 1rem;
   padding: 0.8rem 0 1rem;
   box-shadow: 1px 1px 2px lightslategray;
+  width: 80%;
+  max-width: 700px;
   margin: 0.5rem 2rem;
+}
+
+.exercise-page__forms {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  margin-bottom: 4rem;
+  background-color: white;
 }
 
 .exercise-page__save {
@@ -78,6 +89,8 @@ input {
   border-radius: 1rem;
   padding: 0.8rem 0 1rem;
   box-shadow: 1px 1px 2px lightslategray;
+  width: 80%;
+  max-width: 700px;
   margin: 1rem 2rem;
 }
 
@@ -101,6 +114,8 @@ input {
   border-radius: 1rem;
   padding: 0.8rem 0 1rem;
   box-shadow: 1px 1px 2px lightslategray;
+  width: 80%;
+  max-width: 700px;
   background-color: #F9C48B;
   margin: 0.5rem 2rem;
   order: 1;
@@ -113,6 +128,8 @@ input {
   border-radius: 1rem;
   padding: 0.8rem 0 1rem;
   box-shadow: 1px 1px 2px lightslategray;
+  width: 80%;
+  max-width: 700px;
   background-color: lightsalmon;
   box-shadow: 3px 3px 2px lightslategray;
 }
@@ -127,9 +144,12 @@ input {
 .nav {
   display: flex;
   justify-content: space-evenly;
+  position: fixed;
+  bottom: 0;
   background-color: #F5AC72;
+  width: 100%;
   padding: 1.5rem 0;
-  margin-top: auto;
+  height: 20px;
 }
 
 .nav__button {

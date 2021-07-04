@@ -98,22 +98,24 @@ const ExercisePage = props => {
               </li>) : ''
           }) : ''
           }</ul>
-      <form className="exercise-page__save" onSubmit={e => saveWorkout(e)}>
-        <input
-          name="title"
-          type="text"
-          placeholder="Enter a title"
-          />
-          <button type="submit">SAVE</button>
-      </form>
-      <form className="exercise-page__search">
-        <input
-          type="text"
-          onChange={e => filterExercises(e.target.value)}
-          placeholder="Search.."
-          />
-        <button type="submit">SEARCH</button>
-      </form>
+      <div className="exercise-page__forms">
+        <form className="exercise-page__save" onSubmit={e => saveWorkout(e)}>
+          <input
+            name="title"
+            type="text"
+            placeholder="Enter a title"
+            />
+            <button type="submit">SAVE</button>
+        </form>
+        <form className="exercise-page__search">
+          <input
+            type="text"
+            onChange={e => filterExercises(e.target.value)}
+            placeholder="Search.."
+            />
+          <button type="submit">SEARCH</button>
+        </form>
+      </div>
     </div>
   );  
 
