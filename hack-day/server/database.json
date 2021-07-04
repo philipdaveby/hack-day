@@ -1,126 +1,126 @@
 [
 	{
-		"title": "push ups",
+		"title": "Push ups",
 		"category": "chest, arms",
 		"id": 0,
 		"clicked": false
 	},
 	{
-		"title": "pull ups",
+		"title": "Pull ups",
 		"category": "back, arms",
 		"id": 1,
 		"clicked": false
 	},
 	{
-		"title": "dips",
+		"title": "Dips",
 		"category": "chest, arms",
 		"id": 2,
 		"clicked": false
 	},
 	{
-		"title": "deadlift",
+		"title": "Deadlift",
 		"category": "legs, back",
 		"id": 3,
 		"clicked": false
 	},
 	{
-		"title": "bench press",
+		"title": "Bench press",
 		"category": "chest",
 		"id": 4,
 		"clicked": false
 	},
 	{
-		"title": "squats",
+		"title": "Squats",
 		"category": "legs",
 		"id": 5,
 		"clicked": false
 	},
 	{
-		"title": "air squats",
+		"title": "Air squats",
 		"category": "legs",
 		"id": 6,
 		"clicked": false
 	},
 	{
-		"title": "crunches",
+		"title": "Crunches",
 		"category": "stomach",
 		"id": 7,
 		"clicked": false
 	},
 	{
-		"title": "arnie flies",
+		"title": "Arnie flies",
 		"category": "chest",
 		"id": 8,
 		"clicked": false
 	},
 	{
-		"title": "bulgarian split squat",
+		"title": "Bulgarian split squat",
 		"category": "legs",
 		"id": 9,
 		"clicked": false
 	},
 	{
-		"title": "bench incline",
+		"title": "Bench incline",
 		"category": "chest",
 		"id": 10,
 		"clicked": false
 	},
 	{
-		"title": "biceps curl",
+		"title": "Biceps curl",
 		"category": "arms",
 		"id": 11,
 		"clicked": false
 	},
 	{
-		"title": "triceps",
+		"title": "Triceps",
 		"category": "arms",
 		"id": 12,
 		"clicked": false
 	},
 	{
-		"title": "wrist strech",
+		"title": "Wrist strech",
 		"category": "warm up",
 		"id": 13,
 		"clicked": false
 	},
 	{
-		"title": "foam roller",
+		"title": "Foam roller",
 		"category": "warm up",
 		"id": 14,
 		"clicked": false
 	},
 	{
-		"title": "tow to bar",
+		"title": "Tow to bar",
 		"category": "stomach",
 		"id": 15,
 		"clicked": false
 	},
 	{
-		"title": "shoulder press",
+		"title": "Shoulder press",
 		"category": "shoulders",
 		"id": 16,
 		"clicked": false
 	},
 	{
-		"title": "diamond push-up",
+		"title": "Diamond push-up",
 		"category": "chest, arms",
 		"id": 17,
 		"clicked": false
 	},
 	{
-		"title": "push-ups on mini band",
+		"title": "Push-ups on mini band",
 		"category": "chest, arms",
 		"id": 18,
 		"clicked": false
 	},
 	{
-		"title": "lunges",
+		"title": "Lunges",
 		"category": "legs",
 		"id": 19,
 		"clicked": false
 	},
 	{
-		"title": "bent-over row",
+		"title": "Bent-over row",
 		"category": "back, arms",
 		"id": 20,
 		"clicked": false

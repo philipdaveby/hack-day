@@ -23,7 +23,7 @@ const ExercisePage = props => {
 
   const filterExercises = query => {
     setExercises(exercises.map(exercise => {
-      if (exercise.title.match(query)) {
+      if (exercise.title.match(query) || exercise.category.match(query)) {
         exercise.isFilteredOut = false;
         return exercise;
       }
@@ -82,11 +82,6 @@ const ExercisePage = props => {
     }
     props.setWorkouts([...props.workouts, updatedObject]);
     e.target.title.value = '';
-
-    // setExercises(exercises.map(exercise => {
-    //   exercise.clicked = false;
-    //   return exercise;
-    // }));
 
     props.setWorkout([]);
     history.push('/workouts');

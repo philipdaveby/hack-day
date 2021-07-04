@@ -46,7 +46,7 @@ input {
 }
 
 .exercise-page__list {
-  max-height: 57vh;
+  max-height: 40vh;
   padding-top: 2rem;
   display: flex;
   flex-direction: column;
