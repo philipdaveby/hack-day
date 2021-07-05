@@ -82,6 +82,14 @@ input {
   margin: 1rem 0 2rem 0;
 }
 
+.workouts-page__list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: scroll;
+  padding-bottom: 70px;
+}
+
 .workouts__li {
   list-style-type: none;
   border: none;
@@ -94,17 +102,27 @@ input {
   margin: 1rem 2rem;
 }
 
-.workouts__list {
+.workout__list {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  overflow-y: scroll;
   margin: 0;
   padding: 0;
 }
 
-.workouts__button-delete {
+.workouts__buttons {
   order: 3;
-  margin: auto;
-  margin-top: 0.5rem;
+  width: 90%;
+  margin: 0.5rem 0 0.5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.workouts__button-delete, .workouts__button-restart {
+  font-size: 0.8rem;
+  padding: 1rem 0.5rem;
 }
 
 .workouts__exercise {

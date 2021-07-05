@@ -50,7 +50,6 @@ input {
 }
 
 .exercise-page {
-  // max-height: 75vh;
   overflow: hidden;
 }
 
@@ -59,7 +58,6 @@ input {
 }
 
 .exercise-page__list {
-  // max-height: 40vh;
   padding-top: 2rem;
   display: flex; 
   flex-direction: column; 
@@ -88,22 +86,41 @@ input {
   margin: 1rem 0 2rem 0;
 }
 
+.workouts-page__list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: scroll;
+  padding-bottom: 70px;
+}
+
 .workouts__li {
   @include li;
   margin: 1rem 2rem;
 }
 
-.workouts__list {
+.workout__list {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  overflow-y: scroll;
   margin: 0;
   padding: 0;
 }
 
-.workouts__button-delete {
+.workouts__buttons {
   order: 3;
-  margin: auto;
-  margin-top: 0.5rem;
+  width: 90%;
+  margin: 0.5rem 0 0.5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.workouts__button-delete, .workouts__button-restart {
+  font-size: 0.8rem;
+  // margin: 0 0.5rem;
+  padding: 1rem 0.5rem;
 }
 
 .workouts__exercise {
@@ -135,7 +152,6 @@ input {
   width: 100%;
   padding: 1.5rem 0;
   height: 20px;
-  // margin-top: auto;
 }
 
 .nav__button {
