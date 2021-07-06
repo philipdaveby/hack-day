@@ -1,7 +1,11 @@
+$primary-color: #FFEDDA;
+$secondary-color: #F5AC72;
+$tertiary-color: #4D2404;
+
 * {
   padding: 0;
   margin: 0;
-  color: #4D2404;
+  color: $tertiary-color;
   font-family: 'Helvetica';
   font-weight: 300;
   text-align: center;
@@ -13,18 +17,19 @@ a {
 
 button {
   border: none;
-  background-color: #FFEDDA;
+  background-color: $secondary-color;
   font-weight: 400;
   width: 6rem;
-  border-radius: 1rem;
-  padding: 1rem 1.5rem;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
   box-shadow: 1px 1px 2px lightslategray;
 }
 
 input {
   width: 50%;
   height: 2rem;
-  margin: 0 2rem 0 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid $tertiary-color;
 }
 
 .App {
@@ -37,7 +42,7 @@ input {
 @mixin li {
   list-style-type: none;
   border: none;
-  background-color: #FFEDDA;
+  background-color: $primary-color;
   border-radius: 1rem;
   padding: 0.8rem 0 1rem;
   box-shadow: 1px 1px 2px lightslategray;
@@ -78,6 +83,10 @@ input {
   background-color: white;
 }
 
+.exercise-page__input {
+  margin: 0 2rem 0 1rem;
+}
+
 .exercise-page__save {
   margin: 1rem 0;
 }
@@ -85,6 +94,35 @@ input {
 .exercise-page__search {
   margin: 1rem 0 2rem 0;
 }
+
+.exercise-page__new-exercise {
+  margin-bottom: 13rem;
+}
+
+.exercise-page__new-button {
+  background-color: $secondary-color;
+  width: 10rem;
+  margin-top: 1rem;
+}
+
+.new-exercise__add {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.new-exercise__input {
+  display: flex;
+
+  input {
+    width: 40%;
+    margin: auto;
+    margin-bottom: 1rem;
+  }
+}
+
 
 .workouts-page__list {
   display: flex;
@@ -119,7 +157,6 @@ input {
 
 .workouts__button-delete, .workouts__button-restart {
   font-size: 0.8rem;
-  // margin: 0 0.5rem;
   padding: 1rem 0.5rem;
 }
 
@@ -148,7 +185,7 @@ input {
   justify-content: space-evenly;
   position: fixed;
   bottom: 0;
-  background-color: #F5AC72;
+  background-color: $secondary-color;
   width: 100%;
   padding: 1.5rem 0;
   height: 20px;

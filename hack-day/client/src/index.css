@@ -13,18 +13,19 @@ a {
 
 button {
   border: none;
-  background-color: #FFEDDA;
+  background-color: #F5AC72;
   font-weight: 400;
   width: 6rem;
-  border-radius: 1rem;
-  padding: 1rem 1.5rem;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
   box-shadow: 1px 1px 2px lightslategray;
 }
 
 input {
   width: 50%;
   height: 2rem;
-  margin: 0 2rem 0 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid #4D2404;
 }
 
 .App {
@@ -74,12 +75,43 @@ input {
   background-color: white;
 }
 
+.exercise-page__input {
+  margin: 0 2rem 0 1rem;
+}
+
 .exercise-page__save {
   margin: 1rem 0;
 }
 
 .exercise-page__search {
   margin: 1rem 0 2rem 0;
+}
+
+.exercise-page__new-exercise {
+  margin-bottom: 13rem;
+}
+
+.exercise-page__new-button {
+  background-color: #F5AC72;
+  width: 10rem;
+  margin-top: 1rem;
+}
+
+.new-exercise__add {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.new-exercise__input {
+  display: flex;
+}
+.new-exercise__input input {
+  width: 40%;
+  margin: auto;
+  margin-bottom: 1rem;
 }
 
 .workouts-page__list {

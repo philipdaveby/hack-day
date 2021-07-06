@@ -15,8 +15,13 @@ app.get('/api/exercises', (req, res) => {
   res.send(database);
 });
 
-app.post('/api/world', (req, res) => {
+app.post('/api/exercise', (req, res) => {
+  console.log('Got a req!')
   console.log(req.body);
+  console.log(database);
+  database.push(req.body);
+
+  fs.writeFile('server/database.json', JSON.stringify(database), a => console.log(a));
   res.send(
     `I received your POST request. This is what you sent me: ${req.body.post}`,
   );

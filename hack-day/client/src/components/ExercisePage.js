@@ -1,15 +1,17 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
 const ExercisePage = props => {
 
   const [exercises, setExercises] = props.useStickyState(null, 'exercises');
+  const [displayAddExercise, setDisplayAddExercise] = useState(false);
   const history = useHistory();
   
   useEffect(() => {
     callApi()
-      .then(res => setExercises(res))
-      .catch(err => console.log(err));
+    .then(res => setExercises(res))
+    .catch(err => console.log(err));
+    // eslint-disable-next-line
   }, []);
   
   const callApi = async () => {
@@ -87,6 +89,43 @@ const ExercisePage = props => {
     history.push('/workouts');
   };
 
+  const newExercise = () => {
+    displayAddExercise ? setDisplayAddExercise(false) : setDisplayAddExercise(true);
+    setTimeout(() => window.scrollBy(0, 100), 100)
+  }
+
+  const sendNewExercise = async exerciseObject => {
+    await fetch('/api/exercise', {
+      method: 'POST', 
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(exerciseObject)
+    }).then(res => {
+      console.log("Request complete! response:", res);
+    }).catch(err => console.log(err));
+  };
+
+  const addExercise = e => {
+    e.preventDefault();
+
+    if (!e.target.exercise__title.value || !e.target.exercise__category.value) {
+      return;
+    }
+    const newExercise = {
+      title: e.target.exercise__title.value,
+		  category: e.target.exercise__category.value.toLowerCase(),
+		  id: exercises.length,
+		  clicked: false
+    };
+    sendNewExercise(newExercise);
+    callApi()
+    .then(res => setExercises(res))
+    .catch(err => console.log(err));
+    // se till att den uppdaterar! 
+    setDisplayAddExercise(false);
+  }
+
   return (
     <div className="exercise-page">
       <h2 className="exercise-page__header">Create your workout</h2>
@@ -98,12 +137,33 @@ const ExercisePage = props => {
               </li>) : ''
           }) : ''
           }</ul>
+          <div className="exercise-page__new-exercise">
+            <button className="exercise-page__new-button" onClick={newExercise}>NEW EXERCISE</button>
+            {displayAddExercise ? 
+              <form className="new-exercise__add" onSubmit={e => addExercise(e)}>
+                <section className="new-exercise__input">
+                  <input
+                    name="exercise__title"
+                    type="text"
+                    placeholder="Enter a title"
+                    />
+                    <input
+                    name="exercise__category"
+                    type="text"
+                    placeholder="Enter a category"
+                    />
+                </section>
+                <button type="submit">SAVE</button>
+            </form>
+          : ''}
+        </div>
       <div className="exercise-page__forms">
         <form className="exercise-page__save" onSubmit={e => saveWorkout(e)}>
           <input
             name="title"
             type="text"
             placeholder="Enter a title"
+            className="exercise-page__input"
             />
             <button type="submit">SAVE</button>
         </form>
@@ -112,6 +172,7 @@ const ExercisePage = props => {
             type="text"
             onChange={e => filterExercises(e.target.value)}
             placeholder="Search.."
+            className="exercise-page__input"
             />
           <button type="submit">SEARCH</button>
         </form>

@@ -20,7 +20,7 @@ const Workout = props => {
     }));
   };
   const deleteWorkout = e => {
-    const index = props.workouts.findIndex(workout => workout.id.toString() === e.currentTarget.parentNode.parentNode.parentNode.id);
+    const index = props.workouts.findIndex(workout => workout.id.toString() === e.currentTarget.parentNode.parentNode.parentNode.parentNode.id);
     props.workouts.splice(index, 1);
     window.localStorage.setItem('workouts', JSON.stringify(props.workouts))
   };
