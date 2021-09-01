@@ -25,7 +25,7 @@ const ExercisePage = props => {
 
   const filterExercises = query => {
     setExercises(exercises.map(exercise => {
-      if (exercise.title.match(query) || exercise.category.match(query)) {
+      if (exercise.title.toLowerCase().match(query.toLowerCase()) || exercise.category.toLowerCase().match(query.toLowerCase())) {
         exercise.isFilteredOut = false;
         return exercise;
       }

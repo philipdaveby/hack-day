@@ -135,6 +135,7 @@ input {
 .workouts__li {
   @include li;
   margin: 1rem 2rem;
+  cursor: pointer;
 }
 
 .workout__list {

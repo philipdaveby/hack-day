@@ -11,7 +11,7 @@ const Nav = () => {
       </Link>
       <Link to="/workouts">
         <div className="nav__button">
-          WORKOUT
+          WORKOUTS
         </div>
       </Link>
     </nav>
