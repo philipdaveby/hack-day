@@ -181,6 +181,10 @@ input {
   order: 2
 }
 
+.current-dragging {
+  background-color: white;
+}
+
 .nav {
   display: flex;
   justify-content: space-evenly;

@@ -1,6 +1,51 @@
-import React from 'react';
+import React, {useRef} from 'react';
 
 const Workout = props => {
+
+  const [dragging, setDragging] = props.useStickyState(false);
+
+  const dragItem = useRef();
+  const dragNode = useRef();
+
+  const handleDragStart = (e, objIndex) => {
+    const currentWorkoutIndex = Number(e.currentTarget.parentNode.parentNode.parentNode.id);
+    dragItem.current = {objIndex, currentWorkoutIndex};
+    console.log('Start dragging..', dragItem.current);
+    dragNode.current = e.target;
+    dragNode.current.addEventListener('dragend', handleDragEnd);
+    setTimeout(() => {
+        setDragging(true);
+    }, 0);
+  }
+
+  const getDraggingStyle = (done, exercise) => {
+    console.log('Inside getDraggingStyle')
+    if (dragging) {
+
+      console.log('Current drag item: ' + dragItem.current)
+      console.log('Current objIndex: ' + dragItem.current.objIndex)
+  
+      const currentDragging = dragItem.current;
+      if (currentDragging.objIndex === exercise) {
+        console.log('Inside if inside getDraggingStyle')
+        return done ? "workouts__exercise done current-dragging" : "workouts__exercise current-dragging";
+      }
+      return done ? "workouts__exercise done" : "workouts__exercise";
+    }
+    return done ? "workouts__exercise done" : "workouts__exercise"
+  }
+
+  const handleDragEnd = () => {
+    console.log('Ending drag..')
+    setDragging(false);
+      if (dragNode.current !== null) {
+        console.log('Inside remove event listener')
+        dragNode.current.removeEventListener('dragend', handleDragEnd);
+      }
+      dragItem.current = null;
+      dragNode.current = null;
+  }
+
 
   const toggleDone = e => {
     e.stopPropagation();
@@ -42,8 +87,8 @@ const Workout = props => {
   return (
     <div>
       <ul className="workout__list">
-        {props.workout[0] ? props.workout.map(obj => {
-          return <li key={obj.id} id={obj.id} onClick={e => toggleDone(e)} className={obj.done ? "workouts__exercise done" : "workouts__exercise"}>
+        {props.workout[0] ? props.workout.map((obj, objIndex) => {
+          return <li draggable onDragStart={e => handleDragStart(e, objIndex)} key={obj.id} id={obj.id} onClick={e => toggleDone(e)} className={getDraggingStyle(obj.done, objIndex)} onDragEnd={handleDragEnd}>
             <h2>{obj.title}</h2>
             <p>{obj.category}</p>
             </li>}) : ''
