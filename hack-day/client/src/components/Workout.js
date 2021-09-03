@@ -1,33 +1,32 @@
-import React, {useRef} from 'react';
+import React, {useRef, useEffect} from 'react';
 
 const Workout = props => {
 
+  let [list, setList] = props.useStickyState(null);
   const [dragging, setDragging] = props.useStickyState(false);
+
+  list = props.workout;
 
   const dragItem = useRef();
   const dragNode = useRef();
-
+  
   const handleDragStart = (e, objIndex) => {
-    const currentWorkoutIndex = Number(e.currentTarget.parentNode.parentNode.parentNode.id);
-    dragItem.current = {objIndex, currentWorkoutIndex};
-    console.log('Start dragging..', dragItem.current);
+
+    // const currentWorkoutIndex = Number(e.currentTarget.parentNode.parentNode.parentNode.id);
+    dragItem.current = objIndex;
     dragNode.current = e.target;
     dragNode.current.addEventListener('dragend', handleDragEnd);
     setTimeout(() => {
-        setDragging(true);
+      setDragging(true);
     }, 0);
   }
 
   const getDraggingStyle = (done, exercise) => {
-    console.log('Inside getDraggingStyle')
-    if (dragging) {
 
-      console.log('Current drag item: ' + dragItem.current)
-      console.log('Current objIndex: ' + dragItem.current.objIndex)
-  
-      const currentDragging = dragItem.current;
-      if (currentDragging.objIndex === exercise) {
-        console.log('Inside if inside getDraggingStyle')
+    const currentItem = dragItem.current;
+
+    if (dragging) {
+      if (currentItem === exercise) {
         return done ? "workouts__exercise done current-dragging" : "workouts__exercise current-dragging";
       }
       return done ? "workouts__exercise done" : "workouts__exercise";
@@ -35,15 +34,35 @@ const Workout = props => {
     return done ? "workouts__exercise done" : "workouts__exercise"
   }
 
+  const handleDragEnter = (e, exercise) => {
+
+    const currentItem = dragItem.current;
+
+    if (e.target !== dragNode.current) {
+
+      // setList(prevState => {
+      //   let newList = prevState
+      //   newList?.splice(exercise, 0, newList?.splice(currentItem, 1)[0])
+      //   dragItem.current = exercise;
+      //   return newList
+      // })
+      
+      list.splice(exercise, 0, list.splice(currentItem, 1)[0])
+      
+      dragItem.current = exercise;
+
+      // dragItem.current = currentItem.objIndex;
+
+    }
+  }
+  
   const handleDragEnd = () => {
-    console.log('Ending drag..')
     setDragging(false);
-      if (dragNode.current !== null) {
-        console.log('Inside remove event listener')
-        dragNode.current.removeEventListener('dragend', handleDragEnd);
-      }
-      dragItem.current = null;
-      dragNode.current = null;
+    if (dragNode.current !== null) {
+      dragNode.current.removeEventListener('dragend', handleDragEnd);
+    }
+    dragItem.current = null;
+    dragNode.current = null;
   }
 
 
@@ -87,11 +106,23 @@ const Workout = props => {
   return (
     <div>
       <ul className="workout__list">
-        {props.workout[0] ? props.workout.map((obj, objIndex) => {
-          return <li draggable onDragStart={e => handleDragStart(e, objIndex)} key={obj.id} id={obj.id} onClick={e => toggleDone(e)} className={getDraggingStyle(obj.done, objIndex)} onDragEnd={handleDragEnd}>
-            <h2>{obj.title}</h2>
-            <p>{obj.category}</p>
-            </li>}) : ''
+        {props.workout[0] ? list.map((obj, objIndex) => {
+          return (
+            <li
+              draggable
+              onDragStart={e => handleDragStart(e, objIndex)}
+              key={obj.id} id={obj.id}
+              onClick={e => toggleDone(e)}
+              className={getDraggingStyle(obj.done, objIndex)}
+              onDragEnter={dragging ? e => {handleDragEnter(e, objIndex)} : null}
+              // onDragEnd={handleDragEnd}
+              >
+              <h2 style={{pointerEvents: 'none'}}>{obj.title} </h2>
+              <p style={{pointerEvents: 'none'}}>{obj.category}</p>
+              {/* // Behövs pointerEvents?  */}
+            </li>
+          )
+            }) : ''
         }
         <div className="workouts__buttons">
           <button id={props.workout.id} className="workouts__button-delete" onClick={e => deleteWorkout(e)}>DELETE</button>
