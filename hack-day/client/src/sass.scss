@@ -1,0 +1,197 @@
+$primary-color: #FFEDDA;
+$secondary-color: #F5AC72;
+$tertiary-color: #4D2404;
+
+* {
+  padding: 0;
+  margin: 0;
+  color: $tertiary-color;
+  font-family: 'Helvetica';
+  font-weight: 300;
+  text-align: center;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  border: none;
+  background-color: $secondary-color;
+  font-weight: 400;
+  width: 6rem;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  box-shadow: 1px 1px 2px lightslategray;
+}
+
+input {
+  width: 50%;
+  height: 2rem;
+  border-radius: 0.5rem;
+  border: 1px solid $tertiary-color;
+}
+
+.App {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: -100px;
+}
+
+@mixin li {
+  list-style-type: none;
+  border: none;
+  background-color: $primary-color;
+  border-radius: 1rem;
+  padding: 0.8rem 0 1rem;
+  box-shadow: 1px 1px 2px lightslategray;
+  width: 80%;
+  max-width: 700px;
+}
+
+.main__header {
+  margin: 3rem 0 2rem 0;
+}
+
+.exercise-page {
+  overflow: hidden;
+}
+
+.exercise-page__header {
+  margin-bottom: 2rem;
+}
+
+.exercise-page__list {
+  padding-top: 2rem;
+  display: flex; 
+  flex-direction: column; 
+  align-items: center;
+  overflow-y: scroll;
+}
+
+.exercise-page__li {
+  @include li;
+  margin: 0.5rem 2rem;
+}
+
+.exercise-page__forms {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  margin-bottom: 4rem;
+  background-color: white;
+}
+
+.exercise-page__input {
+  margin: 0 2rem 0 1rem;
+}
+
+.exercise-page__save {
+  margin: 1rem 0;
+}
+
+.exercise-page__search {
+  margin: 1rem 0 2rem 0;
+}
+
+.exercise-page__new-exercise {
+  margin-bottom: 13rem;
+}
+
+.exercise-page__new-button {
+  background-color: $secondary-color;
+  width: 10rem;
+  margin-top: 1rem;
+}
+
+.new-exercise__add {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.new-exercise__input {
+  display: flex;
+
+  input {
+    width: 40%;
+    margin: auto;
+    margin-bottom: 1rem;
+  }
+}
+
+
+.workouts-page__list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: scroll;
+  padding-bottom: 70px;
+}
+
+.workouts__li {
+  @include li;
+  margin: 1rem 2rem;
+  cursor: pointer;
+}
+
+.workout__list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: scroll;
+  margin: 0;
+  padding: 0;
+}
+
+.workouts__buttons {
+  order: 3;
+  width: 90%;
+  margin: 0.5rem 0 0.5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.workouts__button-delete, .workouts__button-restart {
+  font-size: 0.8rem;
+  padding: 1rem 0.5rem;
+}
+
+.workouts__exercise {
+  @include li;
+  background-color: #F9C48B;
+  margin: 0.5rem 2rem;
+  order: 1
+}
+
+.clicked {
+  @include li;
+  background-color: lightsalmon;
+  box-shadow: 3px 3px 2px lightslategray;
+}
+
+.done {
+  background-color: lightgrey;
+  font-style: italic;
+  text-decoration: line-through;
+  order: 2
+}
+
+.nav {
+  display: flex;
+  justify-content: space-evenly;
+  position: fixed;
+  bottom: 0;
+  background-color: $secondary-color;
+  width: 100%;
+  padding: 1.5rem 0;
+  height: 20px;
+}
+
+.nav__button {
+  font-weight: 400;
+}
