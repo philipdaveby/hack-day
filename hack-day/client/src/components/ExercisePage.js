@@ -81,7 +81,7 @@ const ExercisePage = props => {
       id: length,
       done: false
     }
-    console.log(props.workout)
+
     props.setWorkouts([...props.workouts, updatedObject]);
     e.target.title.value = '';
 
@@ -102,7 +102,6 @@ const ExercisePage = props => {
       },
       body: JSON.stringify(exerciseObject)
     }).then(res => {
-      console.log("Request complete! response:", res);
     }).catch(err => console.log(err));
   };
 
