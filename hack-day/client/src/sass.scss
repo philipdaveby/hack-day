@@ -73,6 +73,7 @@ input {
 .exercise-page__li {
   @include li;
   margin: 0.5rem 2rem;
+  cursor: pointer;
 }
 
 .exercise-page__forms {
@@ -88,11 +89,13 @@ input {
 }
 
 .exercise-page__save {
-  margin: 1rem 0;
+  margin: 1rem auto;
+  max-width: 800px;
 }
 
 .exercise-page__search {
-  margin: 1rem 0 2rem 0;
+  margin: 1rem auto 2rem;
+  max-width: 800px;
 }
 
 .exercise-page__new-exercise {
@@ -165,7 +168,8 @@ input {
   @include li;
   background-color: #F9C48B;
   margin: 0.5rem 2rem;
-  order: 1
+  order: 1;
+  cursor: move;
 }
 
 .clicked {
@@ -179,6 +183,10 @@ input {
   font-style: italic;
   text-decoration: line-through;
   order: 2
+}
+
+.current-dragging {
+  visibility: hidden;
 }
 
 .nav {

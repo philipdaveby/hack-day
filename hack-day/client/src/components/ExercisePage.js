@@ -11,7 +11,6 @@ const ExercisePage = props => {
     callApi()
     .then(res => setExercises(res))
     .catch(err => console.log(err));
-    // eslint-disable-next-line
   }, []);
   
   const callApi = async () => {
@@ -82,6 +81,7 @@ const ExercisePage = props => {
       id: length,
       done: false
     }
+
     props.setWorkouts([...props.workouts, updatedObject]);
     e.target.title.value = '';
 
@@ -102,7 +102,6 @@ const ExercisePage = props => {
       },
       body: JSON.stringify(exerciseObject)
     }).then(res => {
-      console.log("Request complete! response:", res);
     }).catch(err => console.log(err));
   };
 

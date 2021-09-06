@@ -9,16 +9,22 @@ const port = process.env.PORT || 5000;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// const database = fs.readFile('./server/database.js');
-
 app.get('/api/exercises', (req, res) => {
   res.send(database);
 });
 
+/*
+
+- Get workouts
+- Post workout
+- Put workout
+- Delete workouts
+
+*/
+
 app.post('/api/exercise', (req, res) => {
   console.log('Got a req!')
   console.log(req.body);
-  console.log(database);
   database.push(req.body);
 
   fs.writeFile('server/database.json', JSON.stringify(database), a => console.log(a));
