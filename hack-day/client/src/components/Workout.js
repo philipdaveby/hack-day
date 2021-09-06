@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React, { useRef } from 'react';
 
 const Workout = props => {
 
@@ -55,7 +55,7 @@ const Workout = props => {
     e.stopPropagation();
 
     props.setWorkouts(props.workouts.map(workout => {
-      if (workout.id.toString() === e.currentTarget.parentNode.parentNode.parentNode.id) {
+      if (workout.workoutId.toString() === e.currentTarget.parentNode.parentNode.parentNode.id) {
         workout.workout.map(exercise => {
           if (e.currentTarget.id === exercise.id.toString()) {
             exercise.done ? exercise.done = false : exercise.done = true;
@@ -68,11 +68,17 @@ const Workout = props => {
     }));
   };
 
-  const deleteWorkout = e => {
-    const index = props.workouts.findIndex(workout => workout.id.toString() === e.currentTarget.parentNode.parentNode.parentNode.parentNode.id);
-    props.workouts.splice(index, 1);
-    window.localStorage.setItem('workouts', JSON.stringify(props.workouts))
+  const deleteWorkout = async e => {
+    await fetch(`/api/workout/remove/${e.currentTarget.parentNode.parentNode.parentNode.parentNode.id}`);
+
+    props.getWorkouts()
+    .then(res => props.setWorkouts(res))
+    .catch(err => console.log(err));
   };
+
+  // useEffect(() => {
+    
+  // }, [deleteWorkout]);
 
   const restart = e => {
     e.stopPropagation();
@@ -96,7 +102,7 @@ const Workout = props => {
             <li
               draggable
               onDragStart={e => handleDragStart(e, objIndex)}
-              key={obj.id} id={obj.id}
+              key={obj._id} id={obj.id}
               onClick={e => toggleDone(e)}
               className={getDraggingStyle(obj.done, objIndex)}
               onDragEnter={dragging ? e => {handleDragEnter(e, objIndex)} : null}

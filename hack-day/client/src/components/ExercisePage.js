@@ -11,6 +11,7 @@ const ExercisePage = props => {
     callApi()
     .then(res => setExercises(res))
     .catch(err => console.log(err));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   
   const callApi = async () => {
@@ -34,6 +35,7 @@ const ExercisePage = props => {
   };
 
   const removeWorkout = e => {
+    
     props.workout.forEach((obj, i) => {
       if (obj.id.toString() === e.currentTarget.id) {
         props.workout.splice(i, 1);
@@ -72,20 +74,27 @@ const ExercisePage = props => {
     toggleWorkout(e);
   };
 
-  const saveWorkout = e => {
+  const saveWorkout = async e => {
     e.preventDefault();
-    const length = props.workouts.length;
     const updatedObject = {
       title: e.target.title.value,
-      workout: props.workout,
-      id: length,
-      done: false
+      workout: props.workout
     }
 
     props.setWorkouts([...props.workouts, updatedObject]);
     e.target.title.value = '';
 
     props.setWorkout([]);
+
+    await fetch('/api/workout', {
+      method: 'POST', 
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(updatedObject)
+    }).then(res => {
+    }).catch(err => console.log(err));
+
     history.push('/workouts');
   };
 
@@ -121,7 +130,7 @@ const ExercisePage = props => {
     callApi()
     .then(res => setExercises(res))
     .catch(err => console.log(err));
-    // se till att den uppdaterar! 
+
     setDisplayAddExercise(false);
   }
 
