@@ -1,4 +1,4 @@
-import React, {useRef, useEffect} from 'react';
+import React, {useRef} from 'react';
 
 const Workout = props => {
 
@@ -11,8 +11,6 @@ const Workout = props => {
   const dragNode = useRef();
   
   const handleDragStart = (e, objIndex) => {
-
-    // const currentWorkoutIndex = Number(e.currentTarget.parentNode.parentNode.parentNode.id);
     dragItem.current = objIndex;
     dragNode.current = e.target;
     dragNode.current.addEventListener('dragend', handleDragEnd);
@@ -35,24 +33,11 @@ const Workout = props => {
   }
 
   const handleDragEnter = (e, exercise) => {
-
     const currentItem = dragItem.current;
 
     if (e.target !== dragNode.current) {
-
-      // setList(prevState => {
-      //   let newList = prevState
-      //   newList?.splice(exercise, 0, newList?.splice(currentItem, 1)[0])
-      //   dragItem.current = exercise;
-      //   return newList
-      // })
-      
-      list.splice(exercise, 0, list.splice(currentItem, 1)[0])
-      
+      setList(list.splice(exercise, 0, list.splice(currentItem, 1)[0]))
       dragItem.current = exercise;
-
-      // dragItem.current = currentItem.objIndex;
-
     }
   }
   
@@ -69,7 +54,6 @@ const Workout = props => {
   const toggleDone = e => {
     e.stopPropagation();
 
-    
     props.setWorkouts(props.workouts.map(workout => {
       if (workout.id.toString() === e.currentTarget.parentNode.parentNode.parentNode.id) {
         workout.workout.map(exercise => {
@@ -83,6 +67,7 @@ const Workout = props => {
       return workout;
     }));
   };
+
   const deleteWorkout = e => {
     const index = props.workouts.findIndex(workout => workout.id.toString() === e.currentTarget.parentNode.parentNode.parentNode.parentNode.id);
     props.workouts.splice(index, 1);
@@ -115,11 +100,9 @@ const Workout = props => {
               onClick={e => toggleDone(e)}
               className={getDraggingStyle(obj.done, objIndex)}
               onDragEnter={dragging ? e => {handleDragEnter(e, objIndex)} : null}
-              // onDragEnd={handleDragEnd}
               >
-              <h2 style={{pointerEvents: 'none'}}>{obj.title} </h2>
-              <p style={{pointerEvents: 'none'}}>{obj.category}</p>
-              {/* // Behövs pointerEvents?  */}
+              <h2>{obj.title} </h2>
+              <p >{obj.category}</p>
             </li>
           )
             }) : ''

@@ -165,7 +165,8 @@ input {
   @include li;
   background-color: #F9C48B;
   margin: 0.5rem 2rem;
-  order: 1
+  order: 1;
+  cursor: move;
 }
 
 .clicked {
@@ -182,7 +183,7 @@ input {
 }
 
 .current-dragging {
-  background-color: white;
+  visibility: hidden;
 }
 
 .nav {
