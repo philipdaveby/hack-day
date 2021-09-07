@@ -7,7 +7,6 @@ const Workout = props => {
 
   list = props.workout;
   
-
   const dragItem = useRef();
   const dragNode = useRef();
   
