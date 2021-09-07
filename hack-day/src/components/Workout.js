@@ -7,6 +7,7 @@ const Workout = props => {
 
   list = props.workout;
   
+  
   const dragItem = useRef();
   const dragNode = useRef();
   
@@ -18,7 +19,7 @@ const Workout = props => {
       setDragging(true);
     }, 0);
   };
-  
+
   const getDraggingStyle = (done, exercise) => {
 
     const currentItem = dragItem.current;
