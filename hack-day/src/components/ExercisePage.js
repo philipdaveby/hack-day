@@ -86,7 +86,7 @@ const ExercisePage = props => {
 
     props.setWorkout([]);
 
-    await fetch('/api/workout', {
+    await fetch('https://hack-day-backend.herokuapp.com/api/workout', {
       method: 'POST', 
       headers: {
         'Content-Type': 'application/json',
@@ -95,7 +95,7 @@ const ExercisePage = props => {
     }).then(res => {
     }).catch(err => console.log(err));
 
-    history.push('/workouts');
+    history.push('https://hack-day-backend.herokuapp.com/workouts');
   };
 
   const newExercise = () => {
@@ -104,7 +104,7 @@ const ExercisePage = props => {
   }
 
   const sendNewExercise = async exerciseObject => {
-    await fetch('/api/exercise', {
+    await fetch('https://hack-day-backend.herokuapp.com/api/exercise', {
       method: 'POST', 
       headers: {
         'Content-Type': 'application/json',
