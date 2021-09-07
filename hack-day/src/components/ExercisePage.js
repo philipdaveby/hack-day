@@ -15,7 +15,7 @@ const ExercisePage = props => {
   }, []);
   
   const callApi = async () => {
-    const response = await fetch('/api/exercises');
+    const response = await fetch('https://musing-mclean-d22dac.netlify.app/api/exercises');
     const body = await response.json();
     if (response.status !== 200) {
       throw Error(body.message);
