@@ -17,8 +17,8 @@ const Workout = props => {
     setTimeout(() => {
       setDragging(true);
     }, 0);
-  }
-
+  };
+  
   const getDraggingStyle = (done, exercise) => {
 
     const currentItem = dragItem.current;
