@@ -95,7 +95,7 @@ const ExercisePage = props => {
     }).then(res => {
     }).catch(err => console.log(err));
 
-    history.push('https://hack-day-backend.herokuapp.com/workouts');
+    history.push('/workouts');
   };
 
   const newExercise = () => {
