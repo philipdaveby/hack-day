@@ -38,5 +38,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "https://hack-day-backend.herokuapp.com/"
+  "proxy": "https://hack-day-backend.herokuapp.com"
 }
