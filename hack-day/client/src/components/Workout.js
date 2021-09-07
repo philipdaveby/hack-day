@@ -29,7 +29,7 @@ const Workout = props => {
       }
       return done ? "workouts__exercise done" : "workouts__exercise";
     }
-    return done ? "workouts__exercise done" : "workouts__exercise"
+    return done ? "workouts__exercise done" : "workouts__exercise";
   }
 
   const handleDragEnter = (e, exercise) => {
