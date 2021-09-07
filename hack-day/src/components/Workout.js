@@ -70,7 +70,7 @@ const Workout = props => {
   const deleteWorkout = async e => {
     await fetch(`/api/workout/remove/${e.currentTarget.parentNode.parentNode.parentNode.parentNode.id}`);
 
-    props.getWorkouts();
+    props.getWorkouts()
     .then(res => props.setWorkouts(res))
     .catch(err => console.log(err));
   };
