@@ -6,7 +6,6 @@ const Workout = props => {
   const [dragging, setDragging] = props.useStickyState(false);
 
   list = props.workout;
-  
 
   const dragItem = useRef();
   const dragNode = useRef();
