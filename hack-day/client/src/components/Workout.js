@@ -50,7 +50,6 @@ const Workout = props => {
     dragNode.current = null;
   }
 
-
   const toggleDone = e => {
     e.stopPropagation();
 
