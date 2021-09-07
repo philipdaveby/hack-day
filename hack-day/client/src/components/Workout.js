@@ -76,10 +76,6 @@ const Workout = props => {
     .catch(err => console.log(err));
   };
 
-  // useEffect(() => {
-    
-  // }, [deleteWorkout]);
-
   const restart = e => {
     e.stopPropagation();
 
