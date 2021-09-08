@@ -79,7 +79,7 @@ const Workout = props => {
     e.stopPropagation();
 
     props.setWorkouts(props.workouts.map(exercises => {
-      if (exercises.workoutId .toString() === e.currentTarget.parentNode.parentNode.parentNode.parentNode.id) {
+      if (exercises.workoutId.toString() === e.currentTarget.parentNode.parentNode.parentNode.parentNode.id) {
         exercises.workout.map(exercise => {
           exercise.done = false;
           return exercise;
