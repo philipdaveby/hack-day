@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import config from '../config';
 
 const ExercisePage = props => {
 
@@ -15,7 +16,7 @@ const ExercisePage = props => {
   }, []);
   
   const callApi = async () => {
-    const response = await fetch('https://hack-day-backend.herokuapp.com/api/exercises');
+    const response = await fetch(`${config.url}/api/exercises`);
     const body = await response.json();
     if (response.status !== 200) {
       throw Error(body.message);

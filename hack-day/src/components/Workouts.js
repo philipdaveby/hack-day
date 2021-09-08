@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import Workout from './Workout';
+import config from '../config';
 
 const Workouts = props => {
 
@@ -13,7 +14,7 @@ const Workouts = props => {
   }, []);
 
   const getWorkouts = async () => {
-    const response = await fetch('https://hack-day-backend.herokuapp.com/api/workouts');
+    const response = await fetch(`${config.url}/api/workouts`);
     const body = await response.json();
     if (response.status !== 200) {
       throw Error(body.message);

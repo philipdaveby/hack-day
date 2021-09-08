@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import config from '../config';
 
 const Workout = props => {
 
@@ -68,7 +69,7 @@ const Workout = props => {
   };
 
   const deleteWorkout = async e => {
-    await fetch(`https://hack-day-backend.herokuapp.com/api/workout/remove/${e.currentTarget.parentNode.parentNode.parentNode.parentNode.id}`);
+    await fetch(`${config.url}/api/workout/remove/${e.currentTarget.parentNode.parentNode.parentNode.parentNode.id}`);
 
     props.getWorkouts()
     .then(res => props.setWorkouts(res))
