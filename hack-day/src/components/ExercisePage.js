@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { useAuth } from "../contexts/AuthContext"
 
 const ExercisePage = props => {
 
@@ -13,6 +14,12 @@ const ExercisePage = props => {
     .catch(err => console.log(err));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const { currentUser } = useAuth();
+
+  if (!currentUser) {
+    history.push('/login');
+  }
   
   const callApi = async () => {
     const response = await fetch('https://hack-day-backend.herokuapp.com/api/exercises');

@@ -1,9 +1,12 @@
 import React, { useEffect } from 'react';
 import Workout from './Workout';
+import { useAuth } from '../contexts/AuthContext';
+import { useHistory } from 'react-router-dom';
 
 const Workouts = props => {
 
   const [activeWorkout, setActiveWorkout] = props.useStickyState(null);
+  const history = useHistory();
 
   useEffect(() => {
     getWorkouts()
@@ -11,6 +14,12 @@ const Workouts = props => {
     .catch(err => console.log(err));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const { currentUser } = useAuth();
+
+  if (!currentUser) {
+    history.push('/login');
+  }
 
   const getWorkouts = async () => {
     const response = await fetch('https://hack-day-backend.herokuapp.com/api/workouts');

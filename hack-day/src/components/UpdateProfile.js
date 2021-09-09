@@ -2,12 +2,12 @@ import React, { useRef, useState } from "react";
 import { useAuth } from "../contexts/AuthContext";
 import { Link, useHistory } from "react-router-dom";
 
-const Signup = () => {
+const UpdateProfile = () => {
 
     const emailRef = useRef(null);
     const passwordRef = useRef(null);
     const passwordConfirmationRef = useRef(null);
-    const { signup } = useAuth();
+    const { currentUser, updateEmail, updatePassword } = useAuth();
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
     const history = useHistory();
@@ -17,23 +17,34 @@ const Signup = () => {
         e.preventDefault();
 
         if (passwordRef.current.value !== passwordConfirmationRef.current.value) {
-            return setError('Passwords do not match')
+            return setError('Passwords do not match');
+        }
+        if (passwordRef.current.value) {
+            promises.push(updatePassword(passwordRef.current.value));
         }
 
-        try {
-            setError('');
-            setLoading(true)
-            await signup(emailRef.current.value, passwordRef.current.value);
-            history.push('/');
-        } catch {
-            setError('Failed to create an account');
+        const promises = [];
+        setLoading(true);
+        setError('');
+        if (emailRef.current.value !== currentUser.email) {
+            promises.push(updateEmail(emailRef.current.value));
         }
-        setLoading(false);
+
+        Promise.all(promises)
+            .then(() => {
+                history.push('/profile');
+            })
+            .catch(() => {
+                setError('Failed to update account');
+            })
+            .finally(() => {
+                setLoading(false);
+            });
     }
 
     return (
         <div>
-            <h2>Sign up</h2>
+            <h2>Update profile</h2>
             {error && <h1 className="error-text">The error: {error}</h1>}
             <form onSubmit={e => handleSubmit(e)}>
                 <input
@@ -44,6 +55,7 @@ const Signup = () => {
                     id="email"
                     placeholder="Email"
                     required
+                    defaultValue={currentUser.email}
                 />
                 <input
                     className="form__input"
@@ -51,8 +63,7 @@ const Signup = () => {
                     ref={passwordRef}
                     name="password"
                     id="password"
-                    placeholder="Password"
-                    required
+                    placeholder="Leave blank to keep the same"
                 />
                 <input
                     className="form__input"
@@ -60,14 +71,13 @@ const Signup = () => {
                     ref={passwordConfirmationRef}
                     name="password-confirmation"
                     id="password-confirmation"
-                    placeholder="Password confirmation"
-                    required
+                    placeholder="Leave blank to keep the same"
                 />
-                <input disabled={loading} type="submit" value="Sign In" />
+                <input disabled={loading} type="submit" value="Update" />
             </form>
-            Already have an account? <Link to="/login">Log in</Link>
+            <Link to="/">Cancel</Link>
         </div>
     );
 }
 
-export default Signup;
+export default UpdateProfile;
