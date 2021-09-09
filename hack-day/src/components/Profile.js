@@ -21,15 +21,21 @@ const Profile = () => {
             setError('Failed to log out');
         }
     }
-    
 
     return (
-        <div>
-            <h2>Profile</h2>
-            {currentUser && <p>Email: {currentUser.email}</p>}
-            <Link to='/update-profile'>Update Profile</Link>
-            {error && <p>{error}</p>}
-            <button onClick={handleLogout}>Log out</button>
+        <div className="profile">
+            <section className="profile__card">
+                <h2 className="h2">Your Profile</h2>
+                <ul className="profile_list">
+                {currentUser && <p>Email: {currentUser.email}</p>}
+                </ul>
+                {error && <p className="profile__error">{error}</p>}
+                <div className="profile__buttons">
+                    {/* <a href="/update-profile">Update Profile</a> */}
+                    <button className="profile__logout-button" onClick={() => history.push('/update-profile')}>Update Profile</button>
+                    <button className="profile__logout-button" onClick={handleLogout}>Log out</button>
+                </div>
+            </section>
         </div>
     )
 }

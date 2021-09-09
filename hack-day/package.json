@@ -16,7 +16,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "dev": "NODE_ENV=development nodemon server.js",
+    "dev": "BROWSER=none NODE_ENV=development nodemon server.js",
     "prod start": "NODE_ENV=production react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -41,5 +41,8 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "https://hack-day-backend.herokuapp.com"
+  "proxy": "https://hack-day-backend.herokuapp.com",
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  }
 }

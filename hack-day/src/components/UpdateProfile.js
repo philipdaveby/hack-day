@@ -43,12 +43,12 @@ const UpdateProfile = () => {
     }
 
     return (
-        <div>
-            <h2>Update profile</h2>
+        <div className="update-profile">
+            <h2 className="h2">Update profile</h2>
             {error && <h1 className="error-text">The error: {error}</h1>}
-            <form onSubmit={e => handleSubmit(e)}>
+            <form className="update-profile__form" onSubmit={e => handleSubmit(e)}>
                 <input
-                    className="form__input"
+                    className="update-profile__input"
                     type="email"
                     ref={emailRef}
                     name="email"
@@ -58,7 +58,7 @@ const UpdateProfile = () => {
                     defaultValue={currentUser.email}
                 />
                 <input
-                    className="form__input"
+                    className="update-profile__input"
                     type="password"
                     ref={passwordRef}
                     name="password"
@@ -66,16 +66,18 @@ const UpdateProfile = () => {
                     placeholder="Leave blank to keep the same"
                 />
                 <input
-                    className="form__input"
+                    className="update-profile__input"
                     type="password"
                     ref={passwordConfirmationRef}
                     name="password-confirmation"
                     id="password-confirmation"
                     placeholder="Leave blank to keep the same"
                 />
-                <input disabled={loading} type="submit" value="Update" />
+                <div className="update-profile__buttons">
+                <button className="update-profile__button" disabled={loading} type="submit">Update</button>
+                <button className="update-profile__cancel" onClick={() => history.push('/')}>Cancel</button>
+                </div>
             </form>
-            <Link to="/">Cancel</Link>
         </div>
     );
 }

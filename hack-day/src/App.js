@@ -33,8 +33,6 @@ const App = () => {
 
   const [workout, setWorkout] = useStickyState([], 'workout');
   const [workouts, setWorkouts] = useStickyState([], 'workouts');
-
-  const test = process.env.REACT_APP_FIREBASE_AUTH_DOMAIN;
   
   return (
     <Router>

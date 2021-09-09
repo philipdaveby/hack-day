@@ -215,4 +215,61 @@ input {
   font-weight: 400;
 }
 
+.profile {
+  margin: 0.5rem auto;
+}
+
+.profile__card {
+  border: 2px #FFEDDA solid;
+  border-radius: 1rem;
+  width: 80vw;
+  max-width: 400px;
+  margin: 1rem auto;
+}
+.profile__card .h2 {
+  margin: 0 0 2rem;
+}
+.profile__card .profile__buttons {
+  margin: 5rem 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.profile__card .profile__logout-button {
+  margin: 0.5rem 0;
+  width: 7rem;
+  cursor: pointer;
+}
+
+.update-profile {
+  border: 2px #FFEDDA solid;
+  border-radius: 1rem;
+  width: 80vw;
+  max-width: 400px;
+  margin: 1rem auto;
+}
+.update-profile .h2 {
+  margin: 1rem 0;
+}
+
+.update-profile__form {
+  display: flex;
+  min-width: 200px;
+  flex-direction: column;
+  padding: 1rem;
+  margin: 1rem;
+}
+.update-profile__form .update-profile__input {
+  width: 100%;
+  margin: 0.3rem auto;
+}
+
+.update-profile__buttons {
+  display: flex;
+}
+.update-profile__buttons .update-profile__button, .update-profile__buttons .update-profile__cancel {
+  margin: 0.3rem auto;
+  width: 5rem;
+}
+
 /*# sourceMappingURL=index.css.map */
