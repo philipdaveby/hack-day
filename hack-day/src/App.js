@@ -40,7 +40,6 @@ const App = () => {
     <Router>
       <AuthProvider>
         <div className="App">
-          <h1>{test}</h1>
           <h1 className="main__header">Workout app</h1>
           <Switch>
             <PrivateRoute path="/update-profile" component={UpdateProfile} />
