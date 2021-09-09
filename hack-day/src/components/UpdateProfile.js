@@ -15,6 +15,7 @@ const UpdateProfile = () => {
 
     const handleSubmit = async e => {
         e.preventDefault();
+        const promises = [];
 
         if (passwordRef.current.value !== passwordConfirmationRef.current.value) {
             return setError('Passwords do not match');
@@ -23,7 +24,6 @@ const UpdateProfile = () => {
             promises.push(updatePassword(passwordRef.current.value));
         }
 
-        const promises = [];
         setLoading(true);
         setError('');
         if (emailRef.current.value !== currentUser.email) {
