@@ -21,6 +21,7 @@ const Profile = () => {
             setError('Failed to log out');
         }
     }
+    
 
     return (
         <div>
