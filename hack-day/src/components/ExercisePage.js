@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import config from '../config';
+import { useAuth } from "../contexts/AuthContext"
 
 const ExercisePage = props => {
 
@@ -14,6 +15,12 @@ const ExercisePage = props => {
     .catch(err => console.log(err));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const { currentUser } = useAuth();
+
+  if (!currentUser) {
+    history.push('/login');
+  }
   
   const callApi = async () => {
     const response = await fetch(`${config.url}/api/exercises`);

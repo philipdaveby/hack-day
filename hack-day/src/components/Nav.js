@@ -14,6 +14,11 @@ const Nav = () => {
           WORKOUTS
         </div>
       </Link>
+      <Link to="/profile">
+        <div className="nav__button">
+          PROFILE
+        </div>
+      </Link>
     </nav>
   );
 };
