@@ -24,11 +24,11 @@ const Workout = props => {
 
     const currentItem = dragItem.current;
 
-    if (dragging) {
-      if (currentItem === exercise) {
-        return done ? "workouts__exercise done current-dragging" : "workouts__exercise current-dragging";
-      }
+    if (!dragging) {
       return done ? "workouts__exercise done" : "workouts__exercise";
+    }
+    if (currentItem === exercise) {
+      return done ? "workouts__exercise done current-dragging" : "workouts__exercise current-dragging";
     }
     return done ? "workouts__exercise done" : "workouts__exercise";
   }
