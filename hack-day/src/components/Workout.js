@@ -15,13 +15,30 @@ const Workout = props => {
     dragItem.current = objIndex;
     dragNode.current = e.target;
     dragNode.current.addEventListener('dragend', handleDragEnd);
+
     setTimeout(() => {
       setDragging(true);
     }, 0);
   };
 
-  const getDraggingStyle = (done, exercise) => {
+  const handleDragEnter = (e, dragEnterIndex) => {
+    if (e.target !== dragNode.current) {
+      setList(list.splice(dragEnterIndex, 0, list.splice(dragItem.current, 1)[0]))
+      dragItem.current = dragEnterIndex;
+    }
+  }
+  
+  const handleDragEnd = () => {
+    setDragging(false);
 
+    if (dragNode.current !== null) {
+      dragNode.current.removeEventListener('dragend', handleDragEnd);
+    }
+    dragItem.current = null;
+    dragNode.current = null;
+  }
+
+  const getDraggingStyle = (done, exercise) => {
     const currentItem = dragItem.current;
 
     if (!dragging) {
@@ -31,24 +48,6 @@ const Workout = props => {
       return done ? "workouts__exercise done current-dragging" : "workouts__exercise current-dragging";
     }
     return done ? "workouts__exercise done" : "workouts__exercise";
-  }
-
-  const handleDragEnter = (e, exercise) => {
-    const currentItem = dragItem.current;
-
-    if (e.target !== dragNode.current) {
-      setList(list.splice(exercise, 0, list.splice(currentItem, 1)[0]))
-      dragItem.current = exercise;
-    }
-  }
-  
-  const handleDragEnd = () => {
-    setDragging(false);
-    if (dragNode.current !== null) {
-      dragNode.current.removeEventListener('dragend', handleDragEnd);
-    }
-    dragItem.current = null;
-    dragNode.current = null;
   }
 
   const toggleDone = e => {
@@ -98,10 +97,10 @@ const Workout = props => {
             <li
               draggable
               onDragStart={e => handleDragStart(e, objIndex)}
+              onDragEnter={dragging ? e => {handleDragEnter(e, objIndex)} : null}
               key={obj._id} id={obj.id}
               onClick={e => toggleDone(e)}
               className={getDraggingStyle(obj.done, objIndex)}
-              onDragEnter={dragging ? e => {handleDragEnter(e, objIndex)} : null}
               >
               <h2>{obj.title} </h2>
               <p >{obj.category}</p>
@@ -110,8 +109,17 @@ const Workout = props => {
             }) : ''
         }
         <div className="workouts__buttons">
-          <button id={props.workout.id} className="workouts__button-delete" onClick={e => deleteWorkout(e)}>DELETE</button>
-          <button id={props.workout.id} className="workouts__button-restart" onClick={e => restart(e)}>RESTART</button>
+          <button 
+          id={props.workout.id} 
+          className="workouts__button-delete" 
+          onClick={e => deleteWorkout(e)}
+          >DELETE</button>
+
+          <button 
+          id={props.workout.id} 
+          className="workouts__button-restart" 
+          onClick={e => restart(e)}
+          >RESTART</button>
         </div>
       </ul>
     </div>
