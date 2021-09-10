@@ -1,4 +1,4 @@
-WORKOUT APP
+# WORKOUT APP
 
 An application to help you plan and store you exercises in personalized workouts. 
 
