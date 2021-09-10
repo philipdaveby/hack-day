@@ -13,7 +13,6 @@ import {
   Switch,
   Route
 } from "react-router-dom";
-import './App.css';
 import { AuthProvider } from './contexts/AuthContext';
 
 const App = () => {
