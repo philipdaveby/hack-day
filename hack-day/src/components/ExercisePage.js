@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import config from '../config';
 import { useAuth } from "../contexts/AuthContext"
+import searchIcon from '../icons/search.png'
 
 const ExercisePage = props => {
 
@@ -145,6 +146,15 @@ const ExercisePage = props => {
   return (
     <div className="exercise-page">
       <h2 className="exercise-page__header">Create your workout</h2>
+      <form className="exercise-page__search">
+          <input
+            type="text"
+            onChange={e => filterExercises(e.target.value)}
+            placeholder="Search.."
+            className="exercise-page__input"
+            />
+          <button type="submit" className="exercise-page__search-button"></button>
+        </form>
           <ul className="exercise-page__list">{
           exercises ? exercises.map(exercise => {
             return !exercise.isFilteredOut ? (<li key={exercise.id} id={exercise.id} onClick={e => toggleChooseExercise(e)} className="exercise-page__li">
@@ -169,7 +179,7 @@ const ExercisePage = props => {
                     placeholder="Enter a category"
                     />
                 </section>
-                <button type="submit">SAVE</button>
+                <button type="submit" className="exercise-page__save-button">SAVE</button>
             </form>
           : ''}
         </div>
@@ -181,16 +191,7 @@ const ExercisePage = props => {
             placeholder="Enter a title"
             className="exercise-page__input"
             />
-            <button type="submit">SAVE</button>
-        </form>
-        <form className="exercise-page__search">
-          <input
-            type="text"
-            onChange={e => filterExercises(e.target.value)}
-            placeholder="Search.."
-            className="exercise-page__input"
-            />
-          <button type="submit">SEARCH</button>
+            <button className="exercise-page__save-button" type="submit">SAVE</button>
         </form>
       </div>
     </div>

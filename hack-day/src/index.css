@@ -11,20 +11,9 @@ a {
   text-decoration: none;
 }
 
-button {
-  border: none;
-  background-color: #F5AC72;
-  font-weight: 400;
-  width: 6rem;
-  border-radius: 0.5rem;
-  padding: 0.5rem 1rem;
-  box-shadow: 1px 1px 2px lightslategray;
-  cursor: pointer;
-}
-
 input {
   width: 50%;
-  height: 2rem;
+  height: 1.5rem;
   border-radius: 0.5rem;
   border: 1px solid #4D2404;
 }
@@ -45,11 +34,11 @@ input {
 }
 
 .exercise-page__header {
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 .exercise-page__list {
-  padding-top: 2rem;
+  padding-top: 0rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -86,16 +75,36 @@ input {
   max-width: 800px;
 }
 
+.exercise-page__save-button {
+  border: none;
+  background-color: #F5AC72;
+  font-weight: 400;
+  width: 6rem;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  box-shadow: 1px 1px 2px lightslategray;
+  cursor: pointer;
+  width: 3.7rem;
+}
+
 .exercise-page__search {
-  margin: 1rem auto 2rem;
+  margin: 0.5rem auto;
   max-width: 800px;
 }
 
 .exercise-page__new-exercise {
-  margin-bottom: 13rem;
+  margin-bottom: 9rem;
 }
 
 .exercise-page__new-button {
+  border: none;
+  background-color: #F5AC72;
+  font-weight: 400;
+  width: 6rem;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  box-shadow: 1px 1px 2px lightslategray;
+  cursor: pointer;
   background-color: #F5AC72;
   width: 10rem;
   margin-top: 1rem;
@@ -158,6 +167,14 @@ input {
 }
 
 .workouts__button-delete, .workouts__button-restart {
+  border: none;
+  background-color: #F5AC72;
+  font-weight: 400;
+  width: 6rem;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  box-shadow: 1px 1px 2px lightslategray;
+  cursor: pointer;
   font-size: 0.8rem;
   padding: 1rem 0.5rem;
 }
@@ -208,8 +225,15 @@ input {
   bottom: 0;
   background-color: #F5AC72;
   width: 100%;
-  padding: 1.5rem 0;
+  padding: 1.2rem 0 1.8rem;
   height: 20px;
+}
+
+.nav__icon {
+  height: 30px;
+}
+.nav__icon .inactive {
+  opacity: 0.5;
 }
 
 .nav__button {
@@ -237,6 +261,14 @@ input {
   align-items: center;
 }
 .profile__card .profile__logout-button {
+  border: none;
+  background-color: #F5AC72;
+  font-weight: 400;
+  width: 6rem;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  box-shadow: 1px 1px 2px lightslategray;
+  cursor: pointer;
   margin: 0.5rem 0;
   width: 7rem;
   cursor: pointer;
@@ -269,6 +301,14 @@ input {
   display: flex;
 }
 .update-profile__buttons .update-profile__button, .update-profile__buttons .update-profile__cancel {
+  border: none;
+  background-color: #F5AC72;
+  font-weight: 400;
+  width: 6rem;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  box-shadow: 1px 1px 2px lightslategray;
+  cursor: pointer;
   margin: 0.3rem auto;
   width: 5rem;
 }
