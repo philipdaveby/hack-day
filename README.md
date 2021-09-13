@@ -2,6 +2,8 @@
 
 An application to help you plan and store you exercises in personalized workouts. 
 
+Visit https://musing-mclean-d22dac.netlify.app
+
 ![Workout app](https://user-images.githubusercontent.com/73835849/132839015-b97a0ae5-e43b-4ef1-995c-1629150615e4.png)
 
 Select the exercises you want to include in your workout, give it a name, get started! 
