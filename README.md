@@ -1,13 +1,3 @@
-<<<<<<< HEAD
-WORKOUT APP
-
-An application to help you plan and store you exercises in personalized workouts. 
-
-
-
-Select the exercises you want to include in your workout, give it a name, get started! 
-Reorder inside your workouts using drag and drop and mark them as done as you go. 
-=======
 # WORKOUT APP
 
 An application to help you plan and store you exercises in personalized workouts. 
@@ -20,4 +10,3 @@ Select the exercises you want to include in your workout, give it a name, get st
 Reorder inside your workouts using drag and drop and mark them as done as you go. 
 
 Workout app was initially a "Hack day" project during the </salt> bootcamp, where I got to develop an app from scratch in one day. 
->>>>>>> 9db900af44648c126d6c75250df548409234a6b2
