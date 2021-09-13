@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import config from '../config';
 import { useAuth } from "../contexts/AuthContext"
-import searchIcon from '../icons/search.png'
 
 const ExercisePage = props => {
 
