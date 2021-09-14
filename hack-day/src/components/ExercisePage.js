@@ -86,7 +86,8 @@ const ExercisePage = props => {
     e.preventDefault();
     const updatedObject = {
       title: e.target.title.value,
-      workout: props.workout
+      workout: props.workout,
+      user: currentUser.email
     }
 
     props.setWorkouts([...props.workouts, updatedObject]);
@@ -132,7 +133,8 @@ const ExercisePage = props => {
       title: e.target.exercise__title.value,
 		  category: e.target.exercise__category.value.toLowerCase(),
 		  id: exercises.length,
-		  clicked: false
+		  clicked: false,
+      user: currentUser.email
     };
     sendNewExercise(newExercise);
     callApi()
