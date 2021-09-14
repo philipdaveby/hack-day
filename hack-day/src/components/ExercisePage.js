@@ -23,13 +23,26 @@ const ExercisePage = props => {
   }
   
   const callApi = async () => {
-    const response = await fetch(`${config.url}/api/exercises`);
-    const body = await response.json();
-    if (response.status !== 200) {
-      throw Error(body.message);
-    }
-    return body;
+    const response = await fetch(`${config.url}/api/exercises`, {
+      method: 'POST', 
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({"user": `${currentUser.email}`})
+    })
+    .catch(err => console.log(err));
+    const res = await response.json();
+    return res;
   };
+  
+  // const callApi = async () => {
+  //   const response = await fetch(`${config.url}/api/exercises`);
+  //   const body = await response.json();
+  //   if (response.status !== 200) {
+  //     throw Error(body.message);
+  //   }
+  //   return body;
+  // };
 
   const filterExercises = query => {
     setExercises(exercises.map(exercise => {
