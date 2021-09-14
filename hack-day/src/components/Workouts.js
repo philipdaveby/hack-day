@@ -23,12 +23,6 @@ const Workouts = props => {
   }
 
   const getWorkouts = async () => {
-    // const response = await fetch(`${config.url}/api/workouts`);
-    // const body = await response.json();
-    // if (response.status !== 200) {
-    //   throw Error(body.message);
-    // }
-    // return body;
 
     const response = await fetch(`${config.url}/api/workouts`, {
       method: 'POST', 
