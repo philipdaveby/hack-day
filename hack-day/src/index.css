@@ -92,6 +92,10 @@ input {
   max-width: 800px;
 }
 
+.exercise-page__search-button {
+  display: none;
+}
+
 .exercise-page__new-exercise {
   margin-bottom: 9rem;
 }
