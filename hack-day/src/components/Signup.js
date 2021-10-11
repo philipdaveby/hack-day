@@ -41,12 +41,17 @@ const Signup = () => {
             passwordConfirmationRef.current.value = '';
             return notify('Passwords do not match, try again please.');
         }
-
+        
         try {
             setLoading(true)
             await signup(emailRef.current.value, passwordRef.current.value);
             history.push('/');
-        } catch {
+        } catch (error) {
+            if (error.code === 'auth/email-already-in-use') {
+                passwordRef.current.value = '';
+                passwordConfirmationRef.current.value = '';
+                return notify(error.message);
+            }
             notify('Failed to create an account, try again please.');
         }
         setLoading(false);
