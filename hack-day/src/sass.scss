@@ -193,7 +193,8 @@ input {
   background-color: lightgrey;
   font-style: italic;
   text-decoration: line-through;
-  order: 2
+  order: 2;
+  cursor: pointer;
 }
 
 .current-dragging {

@@ -8,8 +8,6 @@ const ForgotPassword = () => {
 
     const emailRef = useRef(null);
     const { resetPassword } = useAuth();
-    const [error, setError] = useState('');
-    // const [message, setMessage] = useState('');
     const [loading, setLoading] = useState(false);
 
     const notify = text => toast(text);
@@ -18,16 +16,12 @@ const ForgotPassword = () => {
         e.preventDefault();
 
         try {
-            // setMessage('')
-            setError('');
             setLoading(true)
             await resetPassword(emailRef.current.value);
-            // setMessage('Check your inbox for further instructions')
             notify('Check your inbox for further instructions')
             emailRef.current.value = '';
         } catch {
             notify('Failed to reset password')
-            // setError('Failed to reset password');
         }
         setLoading(false);
     }
@@ -35,7 +29,6 @@ const ForgotPassword = () => {
     return (
         <div>
             <h2>Forgot Password</h2>
-            {error && <h1 className="error-text">The error: {error}</h1>}
             <form onSubmit={e => handleSubmit(e)}>
                 <input
                     className="form__input"
@@ -48,7 +41,6 @@ const ForgotPassword = () => {
                 />
                 <input disabled={loading} type="submit" value="Reset Password" />
             </form>
-            {/* {message && <p>{message}</p>} */}
             <div>
                 <Link to="/login">Login</Link>
             </div>

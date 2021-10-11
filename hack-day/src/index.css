@@ -216,6 +216,7 @@ input {
   font-style: italic;
   text-decoration: line-through;
   order: 2;
+  cursor: pointer;
 }
 
 .current-dragging {

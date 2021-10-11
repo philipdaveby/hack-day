@@ -95,7 +95,7 @@ const Workout = props => {
         {props.workout[0] ? list.map((obj, objIndex) => {
           return (
             <li
-              draggable
+              draggable={!obj.done}
               onDragStart={e => handleDragStart(e, objIndex)}
               onDragEnter={dragging ? e => {handleDragEnter(e, objIndex)} : null}
               key={obj._id} id={obj.id}
