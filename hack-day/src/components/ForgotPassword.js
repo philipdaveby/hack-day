@@ -1,27 +1,33 @@
 import React, { useRef, useState } from "react";
 import { useAuth } from "../contexts/AuthContext";
 import { Link } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ForgotPassword = () => {
 
     const emailRef = useRef(null);
     const { resetPassword } = useAuth();
     const [error, setError] = useState('');
-    const [message, setMessage] = useState('');
+    // const [message, setMessage] = useState('');
     const [loading, setLoading] = useState(false);
 
+    const notify = text => toast(text);
 
     const handleSubmit = async e => {
         e.preventDefault();
 
         try {
-            setMessage('')
+            // setMessage('')
             setError('');
             setLoading(true)
             await resetPassword(emailRef.current.value);
-            setMessage('Check your inbox for further instructions')
+            // setMessage('Check your inbox for further instructions')
+            notify('Check your inbox for further instructions')
+            emailRef.current.value = '';
         } catch {
-            setError('Failed to reset password');
+            notify('Failed to reset password')
+            // setError('Failed to reset password');
         }
         setLoading(false);
     }
@@ -42,11 +48,12 @@ const ForgotPassword = () => {
                 />
                 <input disabled={loading} type="submit" value="Reset Password" />
             </form>
-            {message && <p>{message}</p>}
+            {/* {message && <p>{message}</p>} */}
             <div>
                 <Link to="/login">Login</Link>
             </div>
             Need an account? <Link to="/signup">Sign up</Link>
+            <ToastContainer />
         </div>
     );
 }

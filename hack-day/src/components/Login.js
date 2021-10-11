@@ -1,27 +1,29 @@
 import React, { useRef, useState } from "react";
 import { useAuth } from "../contexts/AuthContext";
 import { Link, useHistory } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
 
     const emailRef = useRef(null);
     const passwordRef = useRef(null);
     const { login } = useAuth();
-    const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
     const history = useHistory();
 
+    const notify = text => toast(text);
 
     const handleSubmit = async e => {
         e.preventDefault();
 
         try {
-            setError('');
             setLoading(true)
             await login(emailRef.current.value, passwordRef.current.value);
             history.push('/');
         } catch {
-            setError('Failed to sign in');
+            notify('Your email and password does not match, please try again.');
+            passwordRef.current.value = '';
         }
         setLoading(false);
     }
@@ -29,7 +31,6 @@ const Login = () => {
     return (
         <div>
             <h2>Log in</h2>
-            {error && <h1 className="error-text">The error: {error}</h1>}
             <form onSubmit={e => handleSubmit(e)}>
                 <input
                     className="form__input"
@@ -55,6 +56,7 @@ const Login = () => {
                 <Link to="/forgot-password">Forgot Password?</Link>
             </div>
             Need an account? <Link to="/signup">Sign up</Link>
+            < ToastContainer />
         </div>
     );
 }

@@ -32,6 +32,7 @@ const Workouts = props => {
       body: JSON.stringify({"user": `${currentUser.email}`})
     })
     .catch(err => console.log(err));
+    
     const res = await response.json();
     return res;
   }

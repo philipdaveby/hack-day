@@ -1,6 +1,8 @@
 import React, { useRef, useState } from "react";
 import { useAuth } from "../contexts/AuthContext";
 import { Link, useHistory } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Signup = () => {
 
@@ -8,25 +10,44 @@ const Signup = () => {
     const passwordRef = useRef(null);
     const passwordConfirmationRef = useRef(null);
     const { signup } = useAuth();
-    const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
     const history = useHistory();
+    const notify = text => toast(text);
 
+    const testPassword = password => {
+        if (password.length < 8) {
+            return notify('Your password must be at least 8 characters long');
+        }
+        if (!/[A-Z]/.test(password)) {
+            return notify('Your password must include at least one upper case letter')
+        }
+        if (!/[a-z]/.test(password)) {
+            return notify('Your password must include at least one lower case letter')
+        }
+        if (!/\d/.test(password)) {
+            return notify('Your password must include at least one number')
+        }
+    }
 
     const handleSubmit = async e => {
         e.preventDefault();
 
+        if (testPassword(passwordRef.current.value)) {
+            return;
+        }
+
         if (passwordRef.current.value !== passwordConfirmationRef.current.value) {
-            return setError('Passwords do not match')
+            passwordRef.current.value = '';
+            passwordConfirmationRef.current.value = '';
+            return notify('Passwords do not match, try again please.');
         }
 
         try {
-            setError('');
             setLoading(true)
             await signup(emailRef.current.value, passwordRef.current.value);
             history.push('/');
         } catch {
-            setError('Failed to create an account');
+            notify('Failed to create an account, try again please.');
         }
         setLoading(false);
     }
@@ -34,7 +55,6 @@ const Signup = () => {
     return (
         <div>
             <h2>Sign up</h2>
-            {error && <h1 className="error-text">The error: {error}</h1>}
             <form onSubmit={e => handleSubmit(e)}>
                 <input
                     className="form__input"
@@ -66,6 +86,7 @@ const Signup = () => {
                 <input disabled={loading} type="submit" value="Sign In" />
             </form>
             Already have an account? <Link to="/login">Log in</Link>
+            <ToastContainer />
         </div>
     );
 }
