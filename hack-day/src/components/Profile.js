@@ -31,7 +31,7 @@ const Profile = () => {
                 </ul>
                 {error && <p className="profile__error">{error}</p>}
                 <div className="profile__buttons">
-                    <button className="profile__logout-button" onClick={() => history.push('/update-profile')}>Update Profile</button>
+                    <button className="profile__logout-button" onClick={() => history.push('/update-profile')}>Update password</button>
                     <button className="profile__logout-button" onClick={handleLogout}>Log out</button>
                 </div>
             </section>
