@@ -18,14 +18,15 @@ const Login = () => {
         e.preventDefault();
 
         try {
-            setLoading(true)
+            // setLoading(true)
             await login(emailRef.current.value, passwordRef.current.value);
+            setLoading(false);
             history.push('/');
         } catch {
             notify('Your email and password does not match, please try again.');
+            setLoading(false);
             passwordRef.current.value = '';
-        }
-        setLoading(false);
+        } 
     }
 
     return (

@@ -21,7 +21,6 @@ const Nav = () => {
       <Link to="/profile">
         <div className="nav__button">
           <img src={profileIcon} alt="Profile icon" className="nav__icon"/> 
-          
         </div>
       </Link>
     </nav>

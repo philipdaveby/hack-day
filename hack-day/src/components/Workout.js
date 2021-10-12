@@ -106,7 +106,7 @@ const Workout = props => {
               <p >{obj.category}</p>
             </li>
           )
-            }) : ''
+        }) : ''
         }
         <div className="workouts__buttons">
           <button 

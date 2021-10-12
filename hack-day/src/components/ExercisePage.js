@@ -10,17 +10,23 @@ const ExercisePage = props => {
   const history = useHistory();
   
   useEffect(() => {
+    let isMounted = true;
+
+    if (!currentUser) {
+      return history.push('/login');
+    }
+
     callApi()
-    .then(res => setExercises(res))
-    .catch(err => console.log(err));
+      .then(res => {
+        if (isMounted) {
+          setExercises(res)};
+        })
+      .catch(err => console.log(err));
+      return () => isMounted = false;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const { currentUser } = useAuth();
-
-  if (!currentUser) {
-    history.push('/login');
-  }
   
   const callApi = async () => {
     const response = await fetch(`${config.url}/api/exercises`, {
@@ -105,8 +111,9 @@ const ExercisePage = props => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(updatedObject)
-    }).then(res => {
-    }).catch(err => console.log(err));
+    })
+    .then(res => res)
+    .catch(err => console.log(err));
 
     history.push('/workouts');
   };
@@ -123,11 +130,12 @@ const ExercisePage = props => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(exerciseObject)
-    }).then(res => {
-    }).catch(err => console.log(err));
+    })
+    .then(res => res)
+    .catch(err => console.log(err));
   };
 
-  const addExercise = e => {
+  const addExercise = async e => {
     e.preventDefault();
 
     if (!e.target.exercise__title.value || !e.target.exercise__category.value) {
@@ -140,10 +148,10 @@ const ExercisePage = props => {
 		  clicked: false,
       user: currentUser.email
     };
-    sendNewExercise(newExercise);
-    callApi()
-    .then(res => setExercises(res))
-    .catch(err => console.log(err));
+     sendNewExercise(newExercise);
+     await callApi()
+      .then(res => setExercises(res))
+      .catch(err => console.log(err));
 
     setDisplayAddExercise(false);
   }
@@ -168,6 +176,7 @@ const ExercisePage = props => {
               </li>) : ''
           }) : ''
           }</ul>
+
           <div className="exercise-page__new-exercise">
             <button className="exercise-page__new-button" onClick={newExercise}>NEW EXERCISE</button>
             {displayAddExercise ? 
@@ -188,6 +197,7 @@ const ExercisePage = props => {
             </form>
           : ''}
         </div>
+
       <div className="exercise-page__forms">
         <form className="exercise-page__save" onSubmit={e => saveWorkout(e)}>
           <input

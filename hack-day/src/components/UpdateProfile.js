@@ -15,6 +15,10 @@ const UpdateProfile = () => {
     const history = useHistory();
     const notify = text => toast(text);
 
+    if (!currentUser) {
+        history.push('/login');
+      }
+
 
     const handleSubmit = async e => {
         e.preventDefault();
