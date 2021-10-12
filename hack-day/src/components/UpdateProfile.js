@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { useAuth } from "../contexts/AuthContext";
 import { useHistory } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
@@ -15,9 +15,11 @@ const UpdateProfile = () => {
     const history = useHistory();
     const notify = text => toast(text);
 
-    if (!currentUser) {
-        history.push('/login');
-      }
+    useEffect(() => {
+        if (!currentUser) {
+            history.push('/login');
+          }
+    })
 
 
     const handleSubmit = async e => {
@@ -32,20 +34,20 @@ const UpdateProfile = () => {
         }
         
         try {
-            setLoading(true)
             await login(currentUser.email, oldPasswordRef.current.value);
 
         } catch {
+            setLoading(false);
             notify('Your old password is not correct, please try again');
             return oldPasswordRef.current.value = '';
         }
 
         try {
-            setLoading(true)
             await promises.push(updatePassword(newPasswordRef.current.value));
             notify('Your password has been updated')
-
+            setLoading(false);
         } catch {
+            setLoading(false);
             notify('Your password could not be updated, please try again');
             newPasswordRef.current.value = '';
             passwordConfirmationRef.current.value = '';
@@ -64,9 +66,6 @@ const UpdateProfile = () => {
             })
             .catch(() => {
                 notify('Failed to update account, please try again');
-            })
-            .finally(() => {
-                setLoading(false);
             });
     }
 

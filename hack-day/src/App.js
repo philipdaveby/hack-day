@@ -7,7 +7,6 @@ import Login from './components/Login';
 import Profile from './components/Profile';
 import ForgotPassword from './components/ForgotPassword';
 import UpdateProfile from './components/UpdateProfile';
-import PrivateRoute from './components/PrivateRoute';
 import {
   BrowserRouter as Router,
   Switch,
@@ -39,7 +38,7 @@ const App = () => {
         <div className="App">
           <h1 className="main__header">Workout app</h1>
           <Switch>
-            <PrivateRoute path="/update-profile" component={UpdateProfile} />
+            <Route path="/update-profile" component={UpdateProfile} />
             <Route path="/signup" component={Signup} />
             <Route path="/login" component={Login} />
             <Route path="/profile" component={Profile} />
