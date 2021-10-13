@@ -17,6 +17,7 @@ const Profile = () => {
         setError('')
 
         try {
+            window.localStorage.clear();
             await logout();
             // history.pushState('/login');
         } catch {

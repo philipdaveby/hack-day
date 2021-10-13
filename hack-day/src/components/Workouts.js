@@ -40,6 +40,7 @@ const Workouts = props => {
   return (
     <div>
       <h2>Your workouts</h2>
+      {props.workouts[0] === undefined ? <button className="workouts__new-workout" onClick={() => history.push('/')}>Create your first workout!</button> : ''}
       <ul className="workouts-page__list">{props.workouts ? props.workouts.map((workout, index) => {
         return <li key={Math.floor(Math.random() * 100000)} id={workout.workoutId} onClick={e => setActiveWorkout( (activeWorkout === workout.workoutId) ? null : workout.workoutId)} className="workouts__li">
            <h2>{workout.title}</h2>

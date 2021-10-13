@@ -160,6 +160,12 @@ input {
   padding: 0;
 }
 
+.workouts__new-workout {
+  @include button;
+  margin: 2rem 1rem;
+  width: 12rem;
+}
+
 .workouts__buttons {
   order: 3;
   width: 90%;
