@@ -35,8 +35,10 @@ const App = () => {
   return (
     <Router>
       <AuthProvider>
-        <div className="App">
-          <h1 className="main__header">Workout app</h1>
+        <main className="App">
+          <header>
+            <h1 className="main__header">Workout app</h1>
+          </header>
           <Switch>
             <Route path="/update-profile" component={UpdateProfile} />
             <Route path="/signup" component={Signup} />
@@ -51,7 +53,7 @@ const App = () => {
             </Route>
           </Switch>
           <Nav />
-        </div>
+        </main>
       </AuthProvider>
     </Router>
   );

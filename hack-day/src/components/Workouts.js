@@ -9,25 +9,18 @@ const Workouts = props => {
   const [activeWorkout, setActiveWorkout] = props.useStickyState(null);
   const history = useHistory();
   const { currentUser } = useAuth();
-  
-  useEffect(() => {
-  });
-  
+
   useEffect(() => {
     if (!currentUser) {
       history.push('/login');
     } else {
-      const callAPI = async () => {
-        await getWorkouts()
-          .then(res => props.setWorkouts(res))
-          .catch(err => console.log(err));
-      }
-      callAPI();
+     getWorkouts()
+        .then(res => props.setWorkouts(res))
+        .catch(err => console.log(err));
+  
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-
 
   const getWorkouts = async () => {
 

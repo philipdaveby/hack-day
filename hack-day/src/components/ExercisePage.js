@@ -7,7 +7,9 @@ const ExercisePage = props => {
 
   const [exercises, setExercises] = props.useStickyState(null, 'exercises');
   const [displayAddExercise, setDisplayAddExercise] = useState(false);
+
   const history = useHistory();
+  const { currentUser } = useAuth();
   
   useEffect(() => {
     let isMounted = true;
@@ -22,11 +24,10 @@ const ExercisePage = props => {
           setExercises(res)};
         })
       .catch(err => console.log(err));
-      return () => isMounted = false;
+    return () => isMounted = false;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const { currentUser } = useAuth();
   
   const callApi = async () => {
     const response = await fetch(`${config.url}/api/exercises`, {
@@ -72,7 +73,7 @@ const ExercisePage = props => {
     });
   };
 
-  const toggleWorkout = e => {
+  const toggleNewWorkout = e => {
     const objExists = props.workout.filter(exercise => exercise.id.toString() === e.currentTarget.id);
     if (objExists[0]) {
       removeWorkout(e);
@@ -81,7 +82,7 @@ const ExercisePage = props => {
     addWorkout(e);
   };
 
-  const toggleChooseExercise = e => {
+  const exerciseInNewWorkout = e => {
     setExercises(exercises.map(exercise => {
       if (e.currentTarget.id === exercise.id.toString()) {
         exercise.clicked ? exercise.clicked = false : exercise.clicked = true;
@@ -89,10 +90,10 @@ const ExercisePage = props => {
       }
       return exercise;
     }));
-    toggleWorkout(e);
+    toggleNewWorkout(e);
   };
 
-  const saveWorkout = async e => {
+  const saveNewWorkout = async e => {
     e.preventDefault();
     const updatedObject = {
       title: e.target.title.value,
@@ -149,6 +150,7 @@ const ExercisePage = props => {
       user: currentUser.email
     };
      sendNewExercise(newExercise);
+     
      await callApi()
       .then(res => setExercises(res))
       .catch(err => console.log(err));
@@ -170,7 +172,7 @@ const ExercisePage = props => {
         </form>
           <ul className="exercise-page__list">{
           exercises ? exercises.map(exercise => {
-            return !exercise.isFilteredOut ? (<li key={exercise.id} id={exercise.id} onClick={e => toggleChooseExercise(e)} className="exercise-page__li">
+            return !exercise.isFilteredOut ? (<li key={exercise.id} id={exercise.id} onClick={e => exerciseInNewWorkout(e)} className="exercise-page__li">
               <h3>{exercise.title}</h3>
               {exercise.category}
               </li>) : ''
@@ -199,7 +201,7 @@ const ExercisePage = props => {
         </div>
 
       <div className="exercise-page__forms">
-        <form className="exercise-page__save" onSubmit={e => saveWorkout(e)}>
+        <form className="exercise-page__save" onSubmit={e => saveNewWorkout(e)}>
           <input
             name="title"
             type="text"

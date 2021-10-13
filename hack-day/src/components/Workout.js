@@ -1,10 +1,10 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import config from '../config';
 
 const Workout = props => {
 
   let [list, setList] = props.useStickyState(null);
-  const [dragging, setDragging] = props.useStickyState(false);
+  const [dragging, setDragging] = useState(false);
 
   list = props.workout;
   
@@ -54,15 +54,19 @@ const Workout = props => {
     e.stopPropagation();
 
     props.setWorkouts(props.workouts.map(workout => {
-      if (workout.workoutId.toString() === e.currentTarget.parentNode.parentNode.parentNode.id) {
-        workout.workout.map(exercise => {
-          if (e.currentTarget.id === exercise.id.toString()) {
-            exercise.done ? exercise.done = false : exercise.done = true;
-            return exercise;
-          } 
-          return exercise;
-        });
+      if (workout.workoutId.toString() !== e.currentTarget.parentNode.parentNode.parentNode.id) {
+        return workout;
       }
+      workout.workout.map(exercise => {
+        if (e.currentTarget.id !== exercise.id.toString()) {
+          return exercise
+        }
+
+        exercise.done ? exercise.done = false : exercise.done = true;
+        return exercise;
+
+      });
+
       return workout;
     }));
   };
@@ -71,20 +75,21 @@ const Workout = props => {
     await fetch(`${config.url}/api/workout/remove/${e.currentTarget.parentNode.parentNode.parentNode.parentNode.id}`);
 
     props.getWorkouts()
-    .then(res => props.setWorkouts(res))
-    .catch(err => console.log(err));
+      .then(res => props.setWorkouts(res))
+      .catch(err => console.log(err));
   };
 
   const restart = e => {
     e.stopPropagation();
 
     props.setWorkouts(props.workouts.map(exercises => {
-      if (exercises.workoutId.toString() === e.currentTarget.parentNode.parentNode.parentNode.parentNode.id) {
-        exercises.workout.map(exercise => {
-          exercise.done = false;
-          return exercise;
-        });
+      if (exercises.workoutId.toString() !== e.currentTarget.parentNode.parentNode.parentNode.parentNode.id) {
+        return exercises
       }
+      exercises.workout.map(exercise => {
+        exercise.done = false;
+        return exercise;
+      });
       return exercises;
     }));
   }
