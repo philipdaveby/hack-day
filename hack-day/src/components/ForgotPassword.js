@@ -1,6 +1,6 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState } from "react";
 import { useAuth } from "../contexts/AuthContext";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -11,14 +11,6 @@ const ForgotPassword = () => {
     const [loading, setLoading] = useState(false);
 
     const notify = text => toast(text);
-    const { currentUser } = useAuth();
-    const history = useHistory();
-
-    useEffect(() => {
-        if (!currentUser) {
-            history.push('/login');
-          }
-    })
 
     const handleSubmit = async e => {
         e.preventDefault();
