@@ -62,9 +62,8 @@ const Workout = props => {
           return exercise
         }
 
-        exercise.done ? exercise.done = false : exercise.done = true;
+        exercise.done = !exercise.done;
         return exercise;
-
       });
 
       return workout;

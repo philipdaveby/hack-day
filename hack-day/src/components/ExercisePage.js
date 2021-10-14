@@ -85,7 +85,7 @@ const ExercisePage = props => {
   const exerciseInNewWorkout = e => {
     setExercises(exercises.map(exercise => {
       if (e.currentTarget.id === exercise.id.toString()) {
-        exercise.clicked ? exercise.clicked = false : exercise.clicked = true;
+        exercise.clicked = !exercise.clicked
         exercise.clicked ? e.currentTarget.className = 'exercise-page__li clicked' : e.currentTarget.className = 'exercise-page__li';
       }
       return exercise;

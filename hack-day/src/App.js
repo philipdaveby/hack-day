@@ -46,7 +46,7 @@ const App = () => {
             <Route path="/profile" component={Profile} />
             <Route path="/forgot-password" component={ForgotPassword} />
             <Route path='/workouts'>
-              <Workouts workout={workout} workouts={workouts} setWorkouts={setWorkouts} useStickyState={useStickyState}/>
+              <Workouts workouts={workouts} setWorkouts={setWorkouts} useStickyState={useStickyState}/>
             </Route>
             <Route path='/'>
               <ExercisePage workout={workout} setWorkout={setWorkout} workouts={workouts} setWorkouts={setWorkouts} useStickyState={useStickyState} />
